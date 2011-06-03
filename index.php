@@ -15,9 +15,9 @@
 // = MORESODA SERVER IDENTIFICATION =
 // ==================================
 
-if($_SERVER['HTTP_HOST']  ==  'pomegreat'){
+if($_SERVER['HTTP_HOST']  ==  '*****'){ // ATTENTION
 	define('APPLICATION_ENV', 'local');
-}elseif($_SERVER['HTTP_HOST']  == 'pomegreat.moresoda-preview.co.uk'){
+}elseif($_SERVER['HTTP_HOST']  == '*****.moresoda-preview.co.uk'){ // ATTENTION
 	define('APPLICATION_ENV', 'preview');
 }else{
 	define('APPLICATION_ENV', 'live');

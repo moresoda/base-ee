@@ -29,7 +29,7 @@ $config['cookie_prefix'] = '';
 // = Moresoda Config Items =
 // =========================
 
-$config['preview_folder']			= 'PREVIEW-FOLDER';  //Folder on the preview site where the site is located
+$config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
 $config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
 $config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
 

@@ -8,9 +8,9 @@
 // = MORESODA SERVER IDENTIFICATION =
 // ==================================
 
-if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){
+if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
 	$active_group = 'local';
-}elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){
+}elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
 	$active_group = 'preview';
 }else{
 	$active_group = 'live';
@@ -18,9 +18,9 @@ if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){
 $active_record = TRUE;
 
 $db['expressionengine']['hostname'] = "localhost";
-$db['expressionengine']['username'] = "LIVE-USER";
-$db['expressionengine']['password'] = "LIVE-PASSWORD";
-$db['expressionengine']['database'] = "LIVE-DATABASE";
+$db['expressionengine']['username'] = "LIVE-USER"; // ATTENTION
+$db['expressionengine']['password'] = "LIVE-PASSWORD"; // ATTENTION
+$db['expressionengine']['database'] = "LIVE-DATABASE"; // ATTENTION
 $db['expressionengine']['dbdriver'] = "mysql";
 $db['expressionengine']['dbprefix'] = "exp_";
 $db['expressionengine']['pconnect'] = FALSE;
@@ -35,7 +35,7 @@ $db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
 $db['preview']['hostname'] = "localhost";
 $db['preview']['username'] = "moreprev";
 $db['preview']['password'] = "12qwaszx";
-$db['preview']['database'] = "moresoda-preview_co_uk_PREVIEW-DB";
+$db['preview']['database'] = "moresoda-preview_co_uk_PREVIEW-DB"; // ATTENTION
 $db['preview']['dbdriver'] = "mysql";
 $db['preview']['dbprefix'] = "exp_";
 $db['preview']['pconnect'] = FALSE;
@@ -50,7 +50,7 @@ $db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
 $db['local']['hostname'] = "localhost";
 $db['local']['username'] = "root";
 $db['local']['password'] = "root";
-$db['local']['database'] = "LOCAL-DATABASE";
+$db['local']['database'] = "LOCAL-DATABASE"; // ATTENTION
 $db['local']['dbdriver'] = "mysql";
 $db['local']['dbprefix'] = "exp_";
 $db['local']['pconnect'] = FALSE;

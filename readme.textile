@@ -1,0 +1,92 @@
+Things included by default
+
+Add-Ons 
+- Modules
+-- SEO Lite
+--- http://www.addonbakery.com/docs/expressionengine/SEO_Lite_-_Installation_Usage.html
+- Accessories
+-- morePreview
+--- https://github.com/moresoda/acc.channel_entry_preview.ee_addon
+- Plugins
+-- Gravatar
+--- http://www.philipzaengle.com/addon/ee_gravatar
+
+
+https://github.com/moresoda/acc.channel_entry_preview.ee_addon
+
+
+
+Design > Template Manager > site > Edit Group > Make the index template in this group your site's home page?	[CHECK]
+
+-----
+
+Add-Ons > Modules > SEO Lite > Install
+
+-----
+
+// Optional
+
+Admin > Content Administration > Global Preferences
+
+Use Category URL Titles In Links? [Yes]
+Word Separator for URL Titles	[Dash]
+
+-----
+
+Admin > Content Administration > File Upload Preferences > Create New Upload Destination
+
+I always strip out the "Image Properties" field.
+
+-----
+
+Admin > Channel Administration > Custom Fields > Create a New Channel Field Group
+
+> Add/Edit Custom Fields > Create a New Custom Field
+
+Field Type: File
+Field Label: Image
+Field Name: image
+
+skip
+
+File Type: Image
+
+> Add/Edit Custom Fields > Create a New Custom Field
+
+Field Type: Textarea
+Field Label: Content
+Field Name: content
+
+-----
+
+Admin > Channel Administration > Categories > Create a New Category Group
+
+*Category Group* > Create a New Category
+
+-----
+
+Admin > Channel Administration > Channels > Create a New Channel
+
+Edit Group Preferences: Yes
+Category Group: Blog *your category group here*
+Status Group: Statuses
+Field Group: Blog *your field group here*
+
+-----
+
+!AUTHORS!
+
+Add-Ons > Modules > Query > Install
+
+// Allows authors list in sidebar
+// Lots of SQL options, best practice to have separate member group for authors
+
+Members > Member Groups > Create a new group based on an existing one [Super Admins]
+
+Member Group Name: Authors
+
+-----
+
+!MOREPREVIEW!
+
+https://github.com/moresoda/acc.channel_entry_preview.ee_addon/blob/master/README.textile
