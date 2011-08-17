@@ -8,7 +8,12 @@
 
 	<meta charset="utf-8"> <!-- simplified version; works on legacy browsers -->
 	
-	{exp:seo_lite entry_id="{entry_id}"}
+	{exp:seo_lite use_last_segment='yes'
+	        title_postfix='{embed:title_postfix}'
+	        default_title='{embed:default_title}'
+	        default_keywords='{embed:default_keywords}'
+	        default_description='{embed:default_description}'
+	}
 	
 	<!-- Facebook Meta Tags... -->
 	
@@ -48,10 +53,11 @@
 	
 		<div id="header">
 	
-			<a id="logo" href="index.html">{site_name}</a>
+			<a id="logo" href="{site_url}">{site_name}</a>
 			
 			<ul id="nav">
-				<li><a href="#">Home</a></li>
+				<li><a href="{site_url}">Home</a></li>
+				<li><a href="{path='xxx'}">XXX</a></li>
 			</ul> <!-- nav -->
 	
 		</div> <!-- header -->

@@ -4,16 +4,12 @@
 // = MORESODA SERVER IDENTIFICATION =
 // ==================================
 
-// ==================================
-// = MORESODA SERVER IDENTIFICATION =
-// ==================================
-
 if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
 	$active_group = 'local';
 }elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
 	$active_group = 'preview';
 }else{
-	$active_group = 'live';
+	$active_group = 'expressionengine';
 }
 $active_record = TRUE;
 

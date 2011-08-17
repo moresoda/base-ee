@@ -24,38 +24,40 @@ if($_SERVER['HTTP_HOST']  ==  '***'){ // ATTENTION
 
 /*
  * --------------------------------------------------------------------
- *  MASKED CP ACCESS
- * --------------------------------------------------------------------
- *
- * This lets the system know whether or not the control panel is being
- * accessed from a location outside the system folder
- * 
- * NOTE: If you set this, be sure that you set the $system_path and the 
- * 'cp_url' item in the $assign_to_config array below!
- * 
- */
-//	define('MASKED_CP', TRUE);
-
-/*
- * --------------------------------------------------------------------
- *  SYSTEM PATH
+ *  System Path
  * --------------------------------------------------------------------
  *
  * The following variable contains the server path to your
- * ExpressionEngine "system" folder.  By default the variable is left
- * blank.  If you need to run your CP from somewhere other then 
- * the default location you can set name here and move a copy of this
- * file to that location. If you set the name, please include the 
- * server path. The path can be a simple relative path or it can 
- * be a full server path.
+ * ExpressionEngine "system" folder.  By default the folder is named
+ * "system" but it can be renamed or moved for increased security.
+ * Indicate the new name and/or path here. The path can be relative
+ * or it can be a full server path.
  *
- * Example:  $system_path = './mysecretfolder';
+ * http://expressionengine.com/user_guide/installation/best_practices.html
  * 
  */
-	$system_path = "";
+	$system_path = './morecms';
+
+
 /*
  * --------------------------------------------------------------------
- *  ERROR REPORTING OVERRIDE
+ *  Multiple Site Manager
+ * --------------------------------------------------------------------
+ *
+ * Uncomment the following variables if you are using the Multiple
+ * Site Manager: http://expressionengine.com/user_guide/cp/sites
+ *
+ * The variables set the Short Name of the site this admin.php file
+ * will log into, and its URL.
+ *
+ */
+//	$assign_to_config['site_name']  = 'domain2_short_name';
+//	$assign_to_config['cp_url'] = 'http://domain2.com/admin.php';
+
+
+/*
+ * --------------------------------------------------------------------
+ *  Error Reporting
  * --------------------------------------------------------------------
  *
  * PHP and database errors are normally displayed dynamically based
@@ -75,15 +77,6 @@ if($_SERVER['HTTP_HOST']  ==  '***'){ // ATTENTION
  */
 	$debug = 1;
 
-
-/*
- * --------------------------------------------------------------------
- *  CUSTOM CONFIG VALUES
- * --------------------------------------------------------------------
- */
-//	$assign_to_config['cp_url'] = ''; // masked CP access only 
-//	$assign_to_config['site_name']  = ''; // MSM only
-	
 /*
  * --------------------------------------------------------------------
  *  END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
@@ -91,6 +84,7 @@ if($_SERVER['HTTP_HOST']  ==  '***'){ // ATTENTION
  */
 
 
+	define('MASKED_CP', TRUE);
 
 /*
  * --------------------------------------------------------------------
