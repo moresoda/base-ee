@@ -8,12 +8,25 @@
 
 	<meta charset="utf-8"> <!-- simplified version; works on legacy browsers -->
 	
-	{exp:seo_lite use_last_segment='yes'
-	        title_postfix='{embed:title_postfix}'
-	        default_title='{embed:default_title}'
-	        default_keywords='{embed:default_keywords}'
-	        default_description='{embed:default_description}'
-	}
+	{if segment_1 == ""}
+	
+		{exp:seo_lite entry_id='*'
+				title_postfix='{embed:title_postfix}'
+				default_title='{embed:default_title}'
+				default_keywords='{embed:default_keywords}'
+				default_description='{embed:default_description}'
+			}
+	
+	{if:else}
+
+		{exp:seo_lite use_last_segment='yes'
+			title_postfix='{embed:title_postfix}'
+			default_title='{embed:default_title}'
+			default_keywords='{embed:default_keywords}'
+			default_description='{embed:default_description}'
+		}
+	
+	{/if}
 	
 	<!-- Facebook Meta Tags... -->
 	
@@ -44,6 +57,8 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="/css/styles.css" type="text/css">
+	<!-- Optional font-face stylesheet, linked to prevent duplication of styles in web inspector -->	
+	<!-- <link rel="stylesheet" href="css/font-face.css" type="text/css"> -->
 	
 </head>
 

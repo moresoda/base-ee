@@ -78,51 +78,6 @@ body {
 	font: 50% "Helvetica Neue", Arial, Helvetica, sans-serif; /* base font size 1em (10px)*/
 }
 
-/*
-
-OPTIONAL @font-face declaration
-
-@font-face {
-    font-family: '*****';
-    src: url('/fonts/*****.eot');
-	src: local('☺'), 
-         url('/fonts/*****.woff') format('woff'),
-         url('/fonts/*****.ttf') format('truetype'),
-         url('/fonts/*****.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-.replace {
-	font-family: *****;
-	font-weight: 400 !important;
-}
-
-.wf-loading .replace {
-  visibility: hidden;
-}
-
-// for single typeface
-.wf-inactive .replace,
-.wf-active .replace {
-	visibility: visible;
-	font-family: *****; 
-	font-weight: 400;
-}
-
-// for multiple typefaces - get the class from the body once it's loaded
-.wf-*****-**-inactive,
-.wf-*****-**-active {
-    font-family: *****;
-	visibility: visible;
-	font-weight: 400;
-}
-
-*/
-
-
-
 /* =[COM] Common Formatting ===== */
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
