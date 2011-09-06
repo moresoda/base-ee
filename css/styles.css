@@ -25,6 +25,7 @@ Company URI:http: //www.moresoda.co.uk
 -2.4. Content [CON]
 -2.5. Footer [FOO]
 -2.6. Classes [CLA]
+-2.7. Mobile [MOB]
 -----
 3. PRINT
 -3.1. Print [PRI]
@@ -415,7 +416,7 @@ caption {
 
 /* =[FOO]= Footer ===== */
 
-#footer{
+#footer {
 
 }
 
@@ -424,6 +425,43 @@ caption {
 
 
 
+
+/* =[MOB]= Mobile - Media Queries ===== */
+
+/*	Tablet Layout: 768px.
+================================================================	*/
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	
+}
+
+
+/*	Mobile Layout: 320px.
+================================================================	*/
+
+@media only screen and (max-width: 767px) {
+
+}
+
+
+/*	Wide Mobile Layout: 480px. 
+================================================================	*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+================================================================	*/
+
+@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (min-device-pixel-ratio: 2) {
+	
+}
 
 /* =[PRI]= Print ===== */
 /**
