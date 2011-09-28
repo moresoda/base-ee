@@ -359,7 +359,6 @@ caption {
 /* =[HEA]= Header ===== */
 
 #header {
-	width: 978px;
 }
 
 #logo {
@@ -399,7 +398,6 @@ caption {
 /* =[CON]= Content ===== */
 
 #content {
-	width: 978px;
 	overflow: hidden;
 }
 
