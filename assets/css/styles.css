@@ -366,7 +366,7 @@ caption {
 	height: 100px;
 	float: left;
 	display: block;
-	background: url(/images/assets/logo.png) no-repeat top left;
+	background: url(/assets/images/logo.png) no-repeat top left;
 	text-indent: -9999px;
 }
 
