@@ -5,13 +5,13 @@
 <!--[if IE 9]>    <html class="ie ie9" lang="en" xmlns:og="http://ogp.me/ns#"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
-	<!-- Meta Tags -->
-
-	<meta charset="utf-8"> <!-- simplified version; works on legacy browsers -->
+	<meta charset="utf-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
 	{if segment_1 == ""}
 	
-		{exp:seo_lite entry_id='*'
+		{exp:seo_lite entry_id='1'
 				title_postfix='{embed:title_postfix}'
 				default_title='{embed:default_title}'
 				default_keywords='{embed:default_keywords}'
@@ -29,6 +29,10 @@
 	
 	{/if}
 	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+{!--
 	<!-- Facebook Meta Tags... -->
 	
 	<meta property="og:title" content=""/>
@@ -47,7 +51,7 @@
 	<meta property="og:country-name" content=""/>
 	<meta property="og:email" content=""/>
 	<meta property="og:phone_number" content=""/>
-
+--}
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -71,13 +75,15 @@
 
 	<div id="wrapper">
 	
-		<div id="header">
+		<header>
 	
 			<a id="logo" href="{site_url}">{site_name}</a>
 			
-			<ul id="nav">
-				<li><a{if segment_1 == ""} class="active"{/if} href="{site_url}">Home</a></li>
-				<li><a{if segment_1 == "XXX"} class="active"{/if} href="{path='XXX'}">XXX</a></li>
-			</ul> <!-- nav -->
+			<nav>
+				<ul>
+					<li><a{if segment_1 == ""} class="active"{/if} href="{site_url}">Home</a></li>
+					<li><a{if segment_1 == "XXX"} class="active"{/if} href="{path='XXX'}">XXX</a></li>
+				</ul>
+			</nav> <!-- nav -->
 	
-		</div> <!-- header -->
+		</header> <!-- header -->

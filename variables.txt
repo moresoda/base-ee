@@ -1,0 +1,114 @@
+=====
+
+Line 13: /files/index.php, /files/admin.php, /files/morecms/index.php 
+
+// ==================================
+// = MORESODA SERVER IDENTIFICATION =
+// ==================================
+
+if($_SERVER['HTTP_HOST']  ==  '***'){ // ATTENTION
+	define('APPLICATION_ENV', 'local');
+}elseif($_SERVER['HTTP_HOST']  == '***.moresoda-preview.co.uk'){ // ATTENTION
+	define('APPLICATION_ENV', 'preview');
+}else{
+	define('APPLICATION_ENV', 'live');
+}
+
+=====
+
+Line 28: /files/morecms/expressionengine/config/config.php
+
+// =========================
+// = Moresoda Config Items =
+// =========================
+
+$config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
+$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
+$config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
+
+$config['save_tmpl_files'] 			= 'y'; //Just in case..
+
+//Paths
+$config['tmpl_file_basepath'] 		= $config['document_root'] . "/templates/";
+$config['avatar_path'] 				= $config['document_root'] . "/images/avatars/";
+$config['photo_path'] 				= $config['document_root'] . "/images/member_photos/";
+$config['sig_img_path'] 			= $config['document_root'] . "/images/signature_attachments/";
+$config['prv_msg_upload_path'] 		= $config['document_root'] . "/images/pm_attachments/";
+$config['captcha_path'] 			= $config['document_root'] . "/images/captchas/";
+$config['emoticon_path'] 			= $config['document_root'] . "/images/smileys/";
+$config['theme_folder_path'] 		= $config['document_root'] . "/themes/";
+
+//Urls
+$config['avatar_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/avatars/";
+$config['photo_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/member_photos/";
+$config['sig_img_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/signature_attachments/";
+$config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
+$config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
+$config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
+
+=====
+
+Replace: /files/morecms/expressionengine/config/database.php
+
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+// ==================================
+// = MORESODA SERVER IDENTIFICATION =
+// ==================================
+
+if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
+	$active_group = 'local';
+}elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
+	$active_group = 'preview';
+}else{
+	$active_group = 'expressionengine';
+}
+$active_record = TRUE;
+
+$db['expressionengine']['hostname'] = "localhost";
+$db['expressionengine']['username'] = "LIVE-USER"; // ATTENTION
+$db['expressionengine']['password'] = "LIVE-PASSWORD"; // ATTENTION
+$db['expressionengine']['database'] = "LIVE-DATABASE"; // ATTENTION
+$db['expressionengine']['dbdriver'] = "mysql";
+$db['expressionengine']['dbprefix'] = "exp_";
+$db['expressionengine']['pconnect'] = FALSE;
+$db['expressionengine']['swap_pre'] = "exp_";
+$db['expressionengine']['db_debug'] = TRUE;
+$db['expressionengine']['cache_on'] = FALSE;
+$db['expressionengine']['autoinit'] = FALSE;
+$db['expressionengine']['char_set'] = "utf8";
+$db['expressionengine']['dbcollat'] = "utf8_general_ci";
+$db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
+
+$db['preview']['hostname'] = "localhost";
+$db['preview']['username'] = "moreprev";
+$db['preview']['password'] = "12qwaszx";
+$db['preview']['database'] = "moresoda-preview_co_uk_PREVIEW-DB"; // ATTENTION
+$db['preview']['dbdriver'] = "mysql";
+$db['preview']['dbprefix'] = "exp_";
+$db['preview']['pconnect'] = FALSE;
+$db['preview']['swap_pre'] = "exp_";
+$db['preview']['db_debug'] = TRUE;
+$db['preview']['cache_on'] = FALSE;
+$db['preview']['autoinit'] = FALSE;
+$db['preview']['char_set'] = "utf8";
+$db['preview']['dbcollat'] = "utf8_general_ci";
+$db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
+
+$db['local']['hostname'] = "localhost";
+$db['local']['username'] = "root";
+$db['local']['password'] = "root";
+$db['local']['database'] = "LOCAL-DATABASE"; // ATTENTION
+$db['local']['dbdriver'] = "mysql";
+$db['local']['dbprefix'] = "exp_";
+$db['local']['pconnect'] = FALSE;
+$db['local']['swap_pre'] = "exp_";
+$db['local']['db_debug'] = TRUE;
+$db['local']['cache_on'] = FALSE;
+$db['local']['autoinit'] = FALSE;
+$db['local']['char_set'] = "utf8";
+$db['local']['dbcollat'] = "utf8_general_ci";
+$db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
+
+/* End of file database.php */
+/* Location: ./system/expressionengine/config/database.php */

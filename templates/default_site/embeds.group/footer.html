@@ -1,6 +1,6 @@
-		<div id="footer">
+		<footer>
 			
-		</div> <!-- footer -->
+		</footer> <!-- footer -->
 	
 	</div> <!-- wrapper -->
 
@@ -23,19 +23,23 @@
 		WebFont.load({
 		  custom: {
 		    families: ['FONT-NAME'], // Font name as used in the stylesheet
-		    urls: ['/css/font-face.css']
+		    urls: ['/assets/css/font-face.css']
 		  }
 		});
 	</script> 
 -->
 	<!-- Analytics -->
-	<!-- mathiasbynens.be/notes/async-analytics-snippet Change UA-XXXXX-X to be your site's ID -->
-	<script type="text/javascript">
-		var _gaq=[["_setAccount","UA-717581-**"],["_trackPageview"]];
-		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-		g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-		s.parentNode.insertBefore(g,s)}(document,"script"));
+	<script>
+		var _gaq=[['_setAccount','UA-717581-X'],['_trackPageview'],['_trackPageLoadTime']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
 	</script>
 	
+	<!--[if lt IE 7 ]>
+		<script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+	<![endif]-->
+
 </body>
 </html>
