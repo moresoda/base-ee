@@ -102,27 +102,33 @@ dfn {
 }
 
 h1 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h2 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h3 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h4 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h5 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h6 {
-
+	font-size: ;
+	margin: 0 0 15px;
 }
 
 h1 img, h2 img, h3 img, 
@@ -207,8 +213,7 @@ li ul, li ol {
 	font-size: 1em;
 	line-height: 1;
 }
-
-nav ul, nav ol {
+nav ul {
     list-style: none;
     list-style-image: none;
     margin: 0;
@@ -394,9 +399,7 @@ footer {
 
 
 /* ==|== media queries ======================================================
-   PLACEHOLDER Media Queries for Responsive Design.
-   These override the primary ('mobile first') styles
-   Modify as content requires.
+
    ========================================================================== */
 
 /*	Tablet Layout: 768px.
@@ -435,7 +438,7 @@ footer {
 }
 
 /* ==|== non-semantic helper classes ========================================
-   Please define your styles before this section.
+
    ========================================================================== */
 
 .clear { display: block; height: 0; line-height: 0; font-size: 0; clear: both; overflow:hidden; }
@@ -491,7 +494,6 @@ footer {
 
 /* ==|== print styles =======================================================
    Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
    ========================================================================== */
 
 @media print { 
