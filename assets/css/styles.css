@@ -102,32 +102,32 @@ dfn {
 }
 
 h1 {
-	font-size: ;
+	font-size: 3em;
 	margin: 0 0 15px;
 }
 
 h2 {
-	font-size: ;
+	font-size: 2.5em;
 	margin: 0 0 15px;
 }
 
 h3 {
-	font-size: ;
+	font-size: 2em;
 	margin: 0 0 15px;
 }
 
 h4 {
-	font-size: ;
+	font-size: 1.8em;
 	margin: 0 0 15px;
 }
 
 h5 {
-	font-size: ;
+	font-size: 1.6em;
 	margin: 0 0 15px;
 }
 
 h6 {
-	font-size: ;
+	font-size: 1.4em;
 	margin: 0 0 15px;
 }
 
@@ -438,10 +438,11 @@ footer {
 }
 
 /* ==|== non-semantic helper classes ========================================
-
+   Please define your styles before this section.
    ========================================================================== */
 
 .clear { display: block; height: 0; line-height: 0; font-size: 0; clear: both; overflow:hidden; }
+/* image replacement */
 .ir {
     display: block;
     border: 0;
@@ -481,6 +482,7 @@ footer {
 .invisible {
     visibility: hidden
 }
+/* clearfix */
 .cf:before, .cf:after {
     content: "";
     display: table;
@@ -492,8 +494,9 @@ footer {
     *zoom: 1
 }
 
+
 /* ==|== print styles =======================================================
-   Print styles.
+
    ========================================================================== */
 
 @media print { 
