@@ -6,9 +6,9 @@ Line 13: /files/index.php, /files/admin.php, /files/morecms/index.php
 // = MORESODA SERVER IDENTIFICATION =
 // ==================================
 
-if($_SERVER['HTTP_HOST']  ==  '***'){ // ATTENTION
+if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
 	define('APPLICATION_ENV', 'local');
-}elseif($_SERVER['HTTP_HOST']  == '***.moresoda-preview.co.uk'){ // ATTENTION
+}elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
 	define('APPLICATION_ENV', 'preview');
 }else{
 	define('APPLICATION_ENV', 'live');
