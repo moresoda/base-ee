@@ -62,18 +62,23 @@
 	
 	
 	<!-- CSS -->
-	<link rel="stylesheet" href="/assets/css/styles.css">
+	{exp:minimee:css}
+		<link rel="stylesheet" href="/assets/css/styles.css">
+	{/exp:minimee:css}
+	<!--[if IE 9]>    
+	{exp:minimee:css}
+		<!-- <link rel="stylesheet" href="/assets/css/font-face.css"> -->
+	{/exp:minimee:css}
+	<![endif]-->
 	<!-- Optional font-face stylesheet, linked to prevent duplication of styles in web inspector, be sure to uncomment normal and IE9 versions -->	
 	<!-- <link rel="stylesheet" href="/assets/css/font-face.css" title="font-face"> -->
-	<!--[if IE 9]>    
-		<!-- <link rel="stylesheet" href="/assets/css/font-face.css"> -->
-	<![endif]-->
-	
-	<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.3-min.js"></script>
 
+	<!--[if lt IE 9]>
+	{exp:minimee:js}
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.3-min.js"></script>
 		<script type="text/javascript" src="/assets/js/selectivizr.js"></script>
+	{/exp:minimee:js}
 	<![endif]-->
 
 </head>

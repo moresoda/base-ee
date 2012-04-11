@@ -46,6 +46,16 @@ $config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
 
+// Minimee preferences
+$config['minimee_cache_path'] 		= $config['document_root'] . "/assets/cache/";
+$config['minimee_cache_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/cache/";
+// advanced preferences
+$config['minimee_base_path'] = '';
+$config['minimee_base_url'] = '';
+$config['minimee_debug'] = 'n'; // 'n' or 'y'
+$config['minimee_disable'] = 'n'; // 'n' or 'y'
+$config['minimee_remote_mode'] = 'auto'; // 'auto', 'curl' or 'fgc'
+
 =====
 
 Replace: /files/morecms/expressionengine/config/database.php
