@@ -1,4 +1,11 @@
 =====
+.gitignore
+
+files/morecms/expressionengine/cache/*
+files/assets/cache/*
+files/.htaccess
+
+=====
 
 Line 13: /files/index.php, /files/admin.php, /files/morecms/index.php 
 
