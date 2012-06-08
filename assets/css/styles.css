@@ -1,7 +1,7 @@
 /*
 =========================================
 
-Project Name: 
+Project Name:
 Creation date: 00 Month 2011
 Author: Jon MacKinnon | jon@moresoda.co.uk
 Company: moresoda design ltd
@@ -58,6 +58,14 @@ button, input, select, textarea {
     color: #fff;
     text-shadow: none;
 }
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	*behavior: url(/assets/js/boxsizing.htc);
+}
+
 
 /* =============================================================================
    Links
@@ -131,7 +139,7 @@ h6 {
 	margin: 0 0 15px;
 }
 
-h1 img, h2 img, h3 img, 
+h1 img, h2 img, h3 img,
 h4 img, h5 img, h6 img {
 	margin: 0;
 }
@@ -317,7 +325,7 @@ td {
 }
 
 /* ==|== primary styles =====================================================
-   
+
    ========================================================================== */
 
 /* ===== Wrapper ===== */
@@ -405,7 +413,7 @@ footer {
 ================================================================	*/
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-	
+
 }
 
 
@@ -417,23 +425,23 @@ footer {
 }
 
 
-/*	Wide Mobile Layout: 480px. 
+/*	Wide Mobile Layout: 480px.
 ================================================================	*/
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	
+
 }
 
 
 /*	Retina media query.
-	Overrides styles for devices with a 
+	Overrides styles for devices with a
 	device-pixel-ratio of 2+, such as iPhone 4.
 ================================================================	*/
 
-@media 
+@media
 	only screen and (-webkit-min-device-pixel-ratio: 2),
 	only screen and (min-device-pixel-ratio: 2) {
-	
+
 }
 
 /* ==|== non-semantic helper classes ========================================
@@ -497,7 +505,7 @@ footer {
 
    ========================================================================== */
 
-@media print { 
+@media print {
     * {
         background: transparent !important;
         color: black !important;
