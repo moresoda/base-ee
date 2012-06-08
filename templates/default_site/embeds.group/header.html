@@ -5,18 +5,18 @@
 <!--[if !IE]><!--> <html lang="en" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
+
 	{if segment_1 == ""}
-	
+
 		{exp:seo_lite entry_id='1'
 				title_postfix='{embed:title_postfix}'
 				default_title='{embed:default_title}'
 				default_keywords='{embed:default_keywords}'
 				default_description='{embed:default_description}'
 			}
-	
+
 	{if:else}
 
 		{exp:seo_lite use_last_segment='yes'
@@ -25,23 +25,23 @@
 			default_keywords='{embed:default_keywords}'
 			default_description='{embed:default_description}'
 		}
-	
+
 	{/if}
 {!--
-	<!-- uncommend if using a responsive design -->	
+	<!-- uncommend if using a responsive design -->
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 --}
 
 {!--
 	<!-- Facebook Meta Tags... -->
-	
+
 	<meta property="og:title" content=""/>
 	<meta property="og:type" content=""/>
 	<meta property="og:url" content="{site_url}"/>
 	<meta property="og:image" content="{site_url}images/assets/site-icon.png"/>
 	<meta property="og:site_name" content=""/>
 	<meta property="og:description" content=""/>
-	
+
 	<meta property="og:latitude" content=""/>
 	<meta property="og:longitude" content=""/>
 	<meta property="og:street-address" content=""/>
@@ -49,28 +49,28 @@
 	<meta property="og:region" content=""/>
 	<meta property="og:postal-code" content=""/>
 	<meta property="og:country-name" content=""/>
-	
+
 	<meta property="og:email" content=""/>
 	<meta property="og:phone_number" content=""/>
 --}
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="/favicon.ico">
-	
+
 	<!-- 129x129 png | DO NOT round corners/put a gloss finish on, device does that automatically -->
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	
-	
+
+
 	<!-- CSS -->
 	{exp:minimee:css}
 		<link rel="stylesheet" href="/assets/css/styles.css">
 	{/exp:minimee:css}
-	<!--[if IE 9]>    
+	<!--[if IE 9]>
 	{exp:minimee:css}
 		<!-- <link rel="stylesheet" href="/assets/css/font-face.css"> -->
 	{/exp:minimee:css}
 	<![endif]-->
-	<!-- Optional font-face stylesheet, linked to prevent duplication of styles in web inspector, be sure to uncomment normal and IE9 versions -->	
+	<!-- Optional font-face stylesheet, linked to prevent duplication of styles in web inspector, be sure to uncomment normal and IE9 versions -->
 	<!-- <link rel="stylesheet" href="/assets/css/font-face.css" title="font-face"> -->
 
 	<!--[if lt IE 9]>
@@ -86,16 +86,16 @@
 <body class="{if segment_1 == ""}home{if:else}{segment_1} {segment_2} {segment_3}{/if}">
 
 	<div id="wrapper">
-	
+
 		<header class="cf">
-	
+
 			<a id="logo" href="{site_url}"><img src="/assets/images/logo.png" alt="{site_name}" /></a>
-			
+
 			<nav>
 				<ul>
 					<li><a{if segment_1 == ""} class="active"{/if} href="{site_url}">Home</a></li>
 					<li><a{if segment_1 == "XXX"} class="active"{/if} href="{path='XXX'}">XXX</a></li>
 				</ul>
 			</nav> <!-- nav -->
-	
+
 		</header> <!-- header -->
