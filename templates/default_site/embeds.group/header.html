@@ -53,13 +53,13 @@
 	<meta property="og:email" content=""/>
 	<meta property="og:phone_number" content=""/>
 --}
-
+{!--
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<!-- 129x129 png | DO NOT round corners/put a gloss finish on, device does that automatically -->
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
+--}
 
 	<!-- CSS -->
 	{exp:minimee:css}
@@ -83,7 +83,7 @@
 
 </head>
 
-<body class="{if segment_1 == ""}home{if:else}{segment_1} {segment_2} {segment_3}{/if}">
+<body class="{if segment_1 == ""}home{if:else}{print_segments}{/if}">
 
 	<div id="wrapper">
 
