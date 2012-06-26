@@ -60,8 +60,16 @@ $config['minimee_cache_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/ca
 $config['minimee_base_path'] = '';
 $config['minimee_base_url'] = '';
 $config['minimee_debug'] = 'n'; // 'n' or 'y'
-$config['minimee_disable'] = 'n'; // 'n' or 'y'
 $config['minimee_remote_mode'] = 'auto'; // 'auto', 'curl' or 'fgc'
+
+if(APPLICATION_ENV  ==  'local' || APPLICATION_ENV  ==  'preview'){
+// disable minimee if working locally or on preview domain
+$config['minimee_disable'] = 'y';
+}else{
+$config['minimee_disable'] = 'n';
+$config['minimee_minify_html'] = 'y'; 
+}
+
 
 =====
 
