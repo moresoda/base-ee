@@ -39,7 +39,7 @@
 	<meta property="og:type" content=""/>
 	<meta property="og:url" content="{site_url}"/>
 	<meta property="og:image" content="{site_url}images/assets/site-icon.png"/>
-	<meta property="og:site_name" content=""/>
+	<meta property="og:site_name" content="{site_name}"/>
 	<meta property="og:description" content=""/>
 
 	<meta property="og:latitude" content=""/>
@@ -64,14 +64,9 @@
 	<!-- CSS -->
 	{exp:minimee:css}
 		<link rel="stylesheet" href="/assets/css/styles.css">
-	{/exp:minimee:css}
-	<!--[if IE 9]>
-	{exp:minimee:css}
-		<!-- <link rel="stylesheet" href="/assets/css/font-face.css"> -->
-	{/exp:minimee:css}
-	<![endif]-->
 	<!-- Optional font-face stylesheet, linked to prevent duplication of styles in web inspector, be sure to uncomment normal and IE9 versions -->
-	<!-- <link rel="stylesheet" href="/assets/css/font-face.css" title="font-face"> -->
+	<!-- <link rel="stylesheet" href="/assets/css/font-face.css"> -->
+	{/exp:minimee:css}
 
 	<!--[if lt IE 9]>
 	{exp:minimee:js}

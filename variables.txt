@@ -1,4 +1,5 @@
 =====
+
 .gitignore
 
 files/morecms/expressionengine/cache/*
@@ -10,7 +11,7 @@ files/.htaccess
 Line 13: /files/index.php, /files/admin.php, /files/morecms/index.php 
 
 // ==================================
-// = MORESODA SERVER IDENTIFICATION =
+// = Moresoda Server Identification =
 // ==================================
 
 if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
@@ -25,9 +26,9 @@ if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
 
 Line 28: /files/morecms/expressionengine/config/config.php
 
-// =========================
-// = Moresoda Config Items =
-// =========================
+// ============================
+// = Moresoda Config Settings =
+// ============================
 
 $config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
 $config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
@@ -53,21 +54,20 @@ $config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
 
-// Minimee preferences
+// Minimee
 $config['minimee_cache_path'] 		= $config['document_root'] . "/assets/cache/";
 $config['minimee_cache_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/cache/";
-// advanced preferences
 $config['minimee_base_path'] = '';
 $config['minimee_base_url'] = '';
 $config['minimee_debug'] = 'n'; // 'n' or 'y'
 $config['minimee_remote_mode'] = 'auto'; // 'auto', 'curl' or 'fgc'
-
-if(APPLICATION_ENV  ==  'local' || APPLICATION_ENV  ==  'preview'){
-// disable minimee if working locally or on preview domain
-$config['minimee_disable'] = 'y';
-}else{
+// Disable minimee if working locally or on preview domain
+if(APPLICATION_ENV == 'live'){
 $config['minimee_disable'] = 'n';
 $config['minimee_minify_html'] = 'y'; 
+}else{
+$config['minimee_minify_html'] = 'n'; 
+$config['minimee_disable'] = 'y';
 }
 
 
@@ -78,7 +78,7 @@ Replace: /files/morecms/expressionengine/config/database.php
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // ==================================
-// = MORESODA SERVER IDENTIFICATION =
+// = Moresoda Server Identification =
 // ==================================
 
 if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
