@@ -15,7 +15,7 @@ class Developer_acc
 {
 	var $name	 		= 'Developer';
 	var $id	 			= 'developer';
-	var $version	 	= '1.4';
+	var $version	 	= '1.5';
 	var $description	= 'Adds functionality for developers';
 	var $sections	 	= array();
 	
@@ -58,20 +58,23 @@ class Developer_acc
 		$html .= '<li class="parent"><a href="'.BASE.'&C=design&M=manager" tabindex="-1">Templates</a><ul>';
 		
 		foreach ($query->result() as $row)
-		{
-			$html .= '<li><a href="'.BASE.'&C=design&M=edit_template_group&group_id='.$row->group_id.'" tabindex="-1" class="tip">edit</a><a href="'.BASE.'&C=design&M=manager&tgpref='.$row->group_id.'" tabindex="-1" class="strong">'.$row->group_name.'</a></li>';
+		{						
+			$html .= '<li class="subparent"><a href="'.BASE.'&C=design&M=manager&tgpref='.$row->group_id.'" tabindex="-1">'.$row->group_name.'</a><ul>';
 			
+			// get templates in this group
 			$template_query = $this->EE->template_model->get_templates(NULL, array(), array('exp_templates.group_id' => $row->group_id));
 			
 			foreach ($template_query->result() as $template)
 			{
-				$html .= '<li><a href="'.BASE.'&C=design&M=edit_template&id='.$template->template_id.'" tabindex="-1" class="indent">'.$template->template_name.'</a></li>';
+				$html .= '<li><a href="'.BASE.'&C=design&M=edit_template&id='.$template->template_id.'" tabindex="-1">'.$template->template_name.'</a></li>';
 			}
 			
-			$html .= '<li><a href="'.BASE.'&C=design&M=new_template&group_id='.$row->group_id.'" tabindex="-1" class="indent add">Add Template</a></li>';
+			$html .= '<li><a href="'.BASE.'&C=design&M=new_template&group_id='.$row->group_id.'" tabindex="-1" class="add">Add Template</a></li>';
+			
+			$html .= '</ul></li>';
 		}
 		
-		$html .= '<li><a href="'.BASE.'&C=design&M=new_template_group" tabindex="-1" class="add strong">Add Template Group</a></li></ul></li>';
+		$html .= '<li><a href="'.BASE.'&C=design&M=new_template_group" tabindex="-1" class="add">Add Template Group</a></li></ul></li>';
 		
 		
 		// custom fields
@@ -82,19 +85,22 @@ class Developer_acc
 		
 		foreach ($query->result() as $row)
 		{			
-			$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_group_edit&group_id='.$row->group_id.'" tabindex="-1" class="tip">rename</a><a href="'.BASE.'&C=admin_content&M=field_management&group_id='.$row->group_id.'" tabindex="-1" class="strong">'.$row->group_name.'</a></li>';
+			$html .= '<li class="subparent"><a href="'.BASE.'&C=admin_content&M=field_management&group_id='.$row->group_id.'" tabindex="-1">'.$row->group_name.'</a><ul>';
 			
+			// get fields in this group
 			$field_query = $this->EE->field_model->get_fields($row->group_id);
 			
 			foreach ($field_query->result() as $field)
 			{		
-				$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_edit&field_id='.$field->field_id.'&group_id='.$row->group_id.'" tabindex="-1" class="indent">'.$field->field_name.'</a></li>';
+				$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_edit&field_id='.$field->field_id.'&group_id='.$row->group_id.'" tabindex="-1">'.$field->field_name.'</a></li>';
 			}
 			
-			$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_edit&group_id='.$row->group_id.'" tabindex="-1" class="indent add">Add Field</a></li>';
+			$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_edit&group_id='.$row->group_id.'" tabindex="-1" class="add">Add Field</a></li>';
+			
+			$html .= '</ul></li>';
 		}
 		
-		$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_group_edit" tabindex="-1" class="add strong">Add Field Group</a></li></ul></li>';
+		$html .= '<li><a href="'.BASE.'&C=admin_content&M=field_group_edit" tabindex="-1" class="add">Add Field Group</a></li></ul></li>';
 		
 		
 		// channels
@@ -119,19 +125,22 @@ class Developer_acc
 
 		foreach ($query->result() as $row)
 		{			
-			$html .= '<li><a href="'.BASE.'&C=admin_content&M=edit_category_group&group_id='.$row->group_id.'" tabindex="-1" class="tip">edit</a><a href="'.BASE.'&C=admin_content&M=category_editor&group_id='.$row->group_id.'" tabindex="-1" class="strong">'.$row->group_name.'</a></li>';			
+			$html .= '<li class="subparent"><a href="'.BASE.'&C=admin_content&M=category_editor&group_id='.$row->group_id.'" tabindex="-1">'.$row->group_name.'</a><ul>';			
 			
+			// get categories in this group
 			$categories_query = $this->EE->category_model->get_channel_categories($row->group_id);
 			
 			foreach ($categories_query->result() as $category)
 			{		
-				$html .= '<li><a href="'.BASE.'&C=admin_content&M=category_edit&cat_id='.$category->cat_id.'&group_id='.$row->group_id.'" tabindex="-1" class="indent">'.$category->cat_name.'</a></li>';
+				$html .= '<li><a href="'.BASE.'&C=admin_content&M=category_edit&cat_id='.$category->cat_id.'&group_id='.$row->group_id.'" tabindex="-1">'.$category->cat_name.'</a></li>';
 			}
 			
-			$html .= '<li><a href="'.BASE.'&C=admin_content&M=category_edit&group_id='.$row->group_id.'" tabindex="-1" class="indent add">Add Category</a></li>';
+			$html .= '<li><a href="'.BASE.'&C=admin_content&M=category_edit&group_id='.$row->group_id.'" tabindex="-1" class="add">Add Category</a></li>';
+			
+			$html .= '</ul></li>';
 		}
 		
-		$html .= '<li><a href="'.BASE.'&C=admin_content&M=edit_category_group" tabindex="-1" class="add strong">Add Category Group</a></li></ul></li>';
+		$html .= '<li><a href="'.BASE.'&C=admin_content&M=edit_category_group" tabindex="-1" class="add">Add Category Group</a></li></ul></li>';
 		
 		
 		// member groups
@@ -142,7 +151,7 @@ class Developer_acc
 
 		foreach ($query->result() as $row)
 		{			
-			$html .= '<li><a href="'.BASE.'&C=members&M=view_all_members&group_id='.$row->group_id.'" tabindex="-1" class="tip">view</a><a href="'.BASE.'&C=members&M=edit_member_group&group_id='.$row->group_id.'" tabindex="-1">'.$row->group_title.'</a></li>';
+			$html .= '<li><a href="'.BASE.'&C=members&M=view_all_members&group_id='.$row->group_id.'" tabindex="-1" class="tip">members</a><a href="'.BASE.'&C=members&M=edit_member_group&group_id='.$row->group_id.'" tabindex="-1">'.$row->group_title.'</a></li>';
 		}
 		
 		$html .= '<li><a href="'.BASE.'&C=members&M=edit_member_group" tabindex="-1" class="add">Add Member Group</a></li></ul></li>';
@@ -232,13 +241,11 @@ class Developer_acc
 		<!-- Developer begin -->
 		<style type="text/css">
 			#developer_acc li {display: list-item !important;}
-			#developer_acc a.indent {padding-left: 20px;}
+			#developer_acc li.subparent {background: url(/themes/cp_themes/default/images/nav_arrow_light.png) center right no-repeat;}
 			#developer_acc a.add {font-style: italic;}
-			#developer_acc a.strong {font-weight: bold;}
-			#developer_acc a.tip {display: none; float: right; font-style: italic; font-size: 11px;}
+			#developer_acc a.tip {display: none; position: absolute; right: 0; background: #000; padding: 2px 3px; font-style: italic; font-size: 11px;}
 			#developer_acc li.active > a.tip {display: block;}
 		</style>		
-		<script type="text/javascript" href="/themes/third_party/developer/jquery.zclip.min"></script>
 		<script type="text/javascript">
 			var developer = \''.$html.'\';
 			$(document).ready(function()

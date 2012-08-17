@@ -2,13 +2,13 @@
 
 .gitignore
 
-files/morecms/expressionengine/cache/*
-files/assets/cache/*
-files/.htaccess
+morecms/expressionengine/cache/*
+assets/cache/*
+.htaccess
 
 =====
 
-Line 13: /files/index.php, /files/admin.php, /files/morecms/index.php 
+Line 13: /index.php, /admin.php, /morecms/index.php 
 
 // ==================================
 // = Moresoda Server Identification =
@@ -24,7 +24,7 @@ if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
 
 =====
 
-Line 28: /files/morecms/expressionengine/config/config.php
+Line 28: /morecms/expressionengine/config/config.php
 
 // ============================
 // = Moresoda Config Settings =
@@ -73,7 +73,7 @@ $config['minimee_disable'] = 'y';
 
 =====
 
-Replace: /files/morecms/expressionengine/config/database.php
+Replace: /morecms/expressionengine/config/database.php
 
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -137,3 +137,76 @@ $db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
 
 /* End of file database.php */
 /* Location: ./system/expressionengine/config/database.php */
+
+=====
+This is a base for Wygwam styles, that way you can remove the standard "Format" dropdown and replace it with the styles. If using multiple font faces, simply append it to the end of the style, eg "Heading 2 - Myriad", "Heading 3 - "
+
+Replace: /themes/third_party/wygwam/lib/ckeditor/plugins/styles/styles/default.js
+
+
+
+CKEDITOR.stylesSet.add('default',[
+	{
+		name:'Normal',
+		element:'p',
+		attributes:
+			{
+				class:''
+			}
+	},
+
+	{
+		name:'Heading 1',
+		element:'h1',
+		attributes:
+			{
+				class:'replace'
+			}
+	},
+
+	{
+		name:'Heading 2',
+		element:'h2',
+		attributes:
+			{
+				class:'replace'
+			}
+	},
+
+	{
+		name:'Heading 3',
+		element:'h3',
+		attributes:
+			{
+				class:'replace'
+			}
+	},
+
+	{
+		name:'Heading 4',
+		element:'h4',
+		attributes:
+			{
+				class:'replace'
+			}
+	},
+
+	{
+		name:'Heading 5',
+		element:'h5',
+		attributes:
+			{
+				class:'replace'
+			}
+	},
+
+	{
+		name:'Heading 6',
+		element:'h6',
+		attributes:
+			{
+				class:'replace'
+			}
+	}
+
+]);

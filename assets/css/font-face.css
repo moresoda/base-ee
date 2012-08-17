@@ -1,15 +1,12 @@
 @font-face {
-    font-family: '*****';
-    src: url('/assets/fonts/*****.eot');
-	src: local('☺'),
-         url('/assets/fonts/*****.woff') format('woff'),
-         url('/assets/fonts/*****.ttf') format('truetype'),
-         url('/assets/fonts/*****.svg') format('svg');
+    font-family: 'FONT-NAME';
+    src: url('/assets/fonts/FILE.eot');
+    src: url('/assets/fonts/FILE?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/FILE.woff') format('woff'),
+         url('/assets/fonts/FILE.svg#FONT-NAME') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
-
 .replace {
 	font-family: *****;
 	font-weight: 400 !important;
