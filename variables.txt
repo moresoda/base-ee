@@ -8,7 +8,7 @@ assets/cache/*
 
 =====
 
-Line 13: /index.php, /admin.php, /morecms/index.php 
+Line 13: /index.php, /admin.php, /morecms/index.php
 
 // ==================================
 // = Moresoda Server Identification =
@@ -31,7 +31,7 @@ Line 28: /morecms/expressionengine/config/config.php
 // ============================
 
 $config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
-$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
+$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : APPLICATION_ENV == 'preview' ? 'index.php?' : 'index.php';
 $config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
 
 $config['save_tmpl_files'] 			= 'y'; //Just in case..
@@ -55,19 +55,21 @@ $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
 
 // Minimee
-$config['minimee_cache_path'] 		= $config['document_root'] . "/assets/cache/";
-$config['minimee_cache_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/cache/";
-$config['minimee_base_path'] = '';
-$config['minimee_base_url'] = '';
-$config['minimee_debug'] = 'n'; // 'n' or 'y'
-$config['minimee_remote_mode'] = 'auto'; // 'auto', 'curl' or 'fgc'
-// Disable minimee if working locally or on preview domain
-if(APPLICATION_ENV == 'live'){
-$config['minimee_disable'] = 'n';
-$config['minimee_minify_html'] = 'y'; 
+$config['minimee'] = array(
+	'cache_path'		=> $config['document_root'] . '/assets/cache/',
+	'cache_url'			=> 'http://' . $_SERVER['HTTP_HOST'] . '/assets/cache/',
+	'cleanup'			=> 'yes',
+);
+if(APPLICATION_ENV == 'live') {
+	$config['minimee'] = array(
+		'minify_html'		=> 'yes',
+		'disable'			=> 'no'
+	);
 }else{
-$config['minimee_minify_html'] = 'n'; 
-$config['minimee_disable'] = 'y';
+	$config['minimee'] = array(
+		'minify_html'		=> 'no',
+		'disable'			=> 'yes'
+	);
 }
 
 
