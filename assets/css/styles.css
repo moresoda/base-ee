@@ -331,7 +331,7 @@ td {
 
 /* ===== Wrapper ===== */
 
-#wrapper {
+.wrapper {
 	width: 978px;
 	margin: 0 auto;
 }
@@ -343,7 +343,7 @@ header {
 
 }
 
-#logo {
+.logo {
 	float: left;
 }
 
@@ -374,12 +374,12 @@ header nav a.active {
 
 /* ===== Content ===== */
 
-#content-left {
+.content-left {
 	float: left;
 	width: 489px;
 }
 
-#content-right {
+.content-right {
 	float: right;
 	width: 489px;
 }

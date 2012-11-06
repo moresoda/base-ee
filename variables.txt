@@ -54,6 +54,23 @@ $config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
 
+//Uploads
+//FILE DIRECTORY NEEDS TO BE SET UP IN CONTROL PANEL FIRST, THEN
+//THIS WILL OVERRIDE THE SETTINGS ALLOWING US TO NOT HAVE TO FUCK
+//AROUND WITH PATHS
+$config['upload_preferences'] = array(
+	1 => array( // THIS NUMBER HAS TO MATCH THE ID OF THE UPLOAD DIRECTORY
+		'name'			=> 'Images',
+		'server_path' 	=> $config['document_root'] . '/uploads/images/',
+		'url'		 	=> 'http://' . $_SERVER['HTTP_HOST'] . '/uploads/images/'
+	),
+	2 => array( // THIS NUMBER HAS TO MATCH THE ID OF THE UPLOAD DIRECTORY
+		'name'			=> 'Files',
+		'server_path' 	=> $config['document_root'] . '/uploads/files/',
+		'url'		 	=> 'http://' . $_SERVER['HTTP_HOST'] . '/uploads/files/'
+	)
+);
+
 // Minimee
 $config['minimee'] = array(
 	'cache_path'		=> $config['document_root'] . '/assets/cache/',
@@ -70,6 +87,17 @@ if(APPLICATION_ENV == 'live') {
 		'minify_html'		=> 'no',
 		'disable'			=> 'yes'
 	);
+}
+
+// Environment
+if(!defined('ENV')) {
+	if($_SERVER['HTTP_HOST']  ==  'LOCAL-HOST-NAME'){ // ATTENTION
+		define('ENV', 'local');
+	}elseif($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
+		define('ENV', 'preview');
+	}else{
+		define('ENV', 'live');
+	}
 }
 
 
