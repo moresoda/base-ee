@@ -16,7 +16,7 @@ class Devotee_acc
 	 */
 	public $name        = 'devot:ee Monitor';
 	public $id          = 'devot-ee';
-	public $version     = '1.2.0';
+	public $version     = '1.2.1';
 	public $description = 'Monitor your add-ons for updates.';
 	public $sections    = array();
 
@@ -369,6 +369,8 @@ class Devotee_acc
 		$ch = curl_init('http://devotee.expressionmonitor.com/updates');
 		curl_setopt_array($ch, array(
 			CURLOPT_POST           => TRUE,
+			CURLOPT_CONNECTTIMEOUT => 2,
+			CURLOPT_TIMEOUT        => 5,
 			CURLOPT_RETURNTRANSFER => TRUE,
 			CURLOPT_POSTFIELDS     => $this->EE->javascript->generate_json($data, TRUE),
 			CURLOPT_HTTPHEADER     => array(

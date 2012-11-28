@@ -300,11 +300,29 @@ class Minimee_ext {
 		// Merge the contents of our db with the allowed
 		$current = array_merge($this->config->get_allowed(), $current);
 
+		// Used to determine if any advanced settings have been changed
+		$clean = $this->config->sanitise_settings($this->config->get_allowed());
+		$basic = array('disable', 'cache_path', 'cache_url', 'combine_css', 'combine_js', 'minify_css', 'minify_js', 'minify_html');
+
+		// remove basic settings
+		$diff = array_diff(array_keys($clean), $basic);
+		$hide_advanced_on_startup = 'TRUE';
+
+		foreach($diff as $key)
+		{
+			if($clean[$key] != $current[$key])
+			{
+				$hide_advanced_on_startup = FALSE;
+				break;
+			}
+		}
+
 		// view vars		
 		$vars = array(
 			'config_warning' => ($this->config->location != 'db') ? lang('config_location_warning') : '',
 			'form_open' => form_open('C=addons_extensions'.AMP.'M=save_extension_settings'.AMP.'file=minimee'),
 			'settings' => $current,
+			'hide_advanced_on_startup' => $hide_advanced_on_startup,
 			'flashdata_success' => $this->EE->session->flashdata('message_success')
 			);
 
