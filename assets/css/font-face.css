@@ -2,8 +2,8 @@
     font-family: 'FONT-NAME';
     src: url('/assets/fonts/FILE.eot');
     src: url('/assets/fonts/FILE?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/FILE.woff') format('woff'),
-         url('/assets/fonts/FILE.svg#FONT-NAME') format('svg');
+         url('/assets/fonts/FILE.svg') format('svg'),
+         url('/assets/fonts/FILE.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

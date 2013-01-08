@@ -32,7 +32,7 @@ var $return_data = "";
 		if (array_key_exists('DOCUMENT_ROOT',$_ENV))
 		{
 
-			if($_SERVER['HTTP_HOST']  == 'PREVIEW-URL.moresoda-preview.co.uk'){ // ATTENTION
+			if($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
 				$base_path = $_ENV['DOCUMENT_ROOT']."/PREVIEW-FOLDER/";
 			}else{
 				$base_path = $_ENV['DOCUMENT_ROOT']."/";
@@ -41,7 +41,7 @@ var $return_data = "";
 		}
 		else
 		{
-			if($_SERVER['HTTP_HOST']  == 'PREVIEW-URL.moresoda-preview.co.uk'){ // ATTENTION
+			if($_SERVER['HTTP_HOST']  == 'PREVIEW-DOMAIN.moresoda-preview.co.uk'){ // ATTENTION
 				$base_path = $_SERVER['DOCUMENT_ROOT']."/PREVIEW-FOLDER/";
 			}else{
 				$base_path = $_SERVER['DOCUMENT_ROOT']."/";

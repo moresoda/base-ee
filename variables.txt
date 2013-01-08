@@ -31,7 +31,7 @@ Line 28: /morecms/expressionengine/config/config.php
 // ============================
 
 $config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
-$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : APPLICATION_ENV == 'preview' ? 'index.php?' : 'index.php';
+$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
 $config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
 
 $config['save_tmpl_files'] 			= 'y'; //Just in case..
@@ -72,18 +72,19 @@ $config['upload_preferences'] = array(
 );
 
 // Minimee
-$config['minimee'] = array(
-	'cache_path'		=> $config['document_root'] . '/assets/cache/',
-	'cache_url'			=> 'http://' . $_SERVER['HTTP_HOST'] . '/assets/cache/',
-	'cleanup'			=> 'yes',
-);
 if(APPLICATION_ENV == 'live') {
 	$config['minimee'] = array(
+		'cache_path'		=> $config['document_root'] . '/assets/cache/',
+		'cache_url'			=> 'http://' . $_SERVER['HTTP_HOST'] . '/assets/cache/',
+		'cleanup'			=> 'yes',
 		'minify_html'		=> 'yes',
 		'disable'			=> 'no'
 	);
 }else{
 	$config['minimee'] = array(
+		'cache_path'		=> $config['document_root'] . '/assets/cache/',
+		'cache_url'			=> 'http://' . $_SERVER['HTTP_HOST'] . '/assets/cache/',
+		'cleanup'			=> 'yes',
 		'minify_html'		=> 'no',
 		'disable'			=> 'yes'
 	);
@@ -148,7 +149,7 @@ $db['preview']['cache_on'] = FALSE;
 $db['preview']['autoinit'] = FALSE;
 $db['preview']['char_set'] = "utf8";
 $db['preview']['dbcollat'] = "utf8_general_ci";
-$db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
+$db['preview']['cachedir'] = APPPATH . "cache/db_cache/";
 
 $db['local']['hostname'] = "localhost";
 $db['local']['username'] = "root";
@@ -163,7 +164,7 @@ $db['local']['cache_on'] = FALSE;
 $db['local']['autoinit'] = FALSE;
 $db['local']['char_set'] = "utf8";
 $db['local']['dbcollat'] = "utf8_general_ci";
-$db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
+$db['local']['cachedir'] = APPPATH . "cache/db_cache/";
 
 /* End of file database.php */
 /* Location: ./system/expressionengine/config/database.php */

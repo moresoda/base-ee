@@ -24,6 +24,7 @@ audio, canvas, video {
 }
 audio:not([controls]) {
     display: none;
+    height: 0;
 }
 [hidden] {
     display: none;
@@ -34,10 +35,11 @@ audio:not([controls]) {
    ========================================================================== */
 
 html {
-    font-size: 125%;
     overflow-y: scroll;
+    font-size: 125%;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
 }
 body {
     margin: 0;
@@ -45,8 +47,8 @@ body {
 	font: 50%/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif; /* base font size 1em (10px)*/
 }
 button, input, select, textarea {
-    font-family: sans-serif;
     color: #222;
+    font-family: sans-serif;
 }
 ::-moz-selection {
     background: #fe57a1;
@@ -60,9 +62,9 @@ button, input, select, textarea {
 }
 
 * {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	*behavior: url(/assets/js/boxsizing.htc);
 }
 
@@ -73,11 +75,6 @@ button, input, select, textarea {
 
 a {
     color: #00e;
-}
-
-a:active,
-a:visited {
-    color: #06e;
 }
 
 a:focus {
@@ -110,33 +107,33 @@ dfn {
 }
 
 h1 {
-	font-size: 3em;
 	margin: 0 0 15px;
+	font-size: 3em;
 }
 
 h2 {
-	font-size: 2.5em;
 	margin: 0 0 15px;
+	font-size: 2.5em;
 }
 
 h3 {
-	font-size: 2em;
 	margin: 0 0 15px;
+	font-size: 2em;
 }
 
 h4 {
-	font-size: 1.8em;
 	margin: 0 0 15px;
+	font-size: 1.8em;
 }
 
 h5 {
-	font-size: 1.6em;
 	margin: 0 0 15px;
+	font-size: 1.6em;
 }
 
 h6 {
-	font-size: 1.4em;
 	margin: 0 0 15px;
+	font-size: 1.4em;
 }
 
 h1 img, h2 img, h3 img,
@@ -146,11 +143,11 @@ h4 img, h5 img, h6 img {
 
 hr {
     display: block;
+    margin: 1em 0;
+    padding: 0;
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
 }
 ins {
     background: #ff9;
@@ -160,19 +157,19 @@ ins {
 mark {
     background: #ff0;
     color: #000;
-    font-style: italic;
     font-weight: bold;
+    font-style: italic;
 }
 
 p {
-	font-size: 1.2em;
 	margin: 0 0 15px;
+	font-size: 1.4em;
 }
 
 pre, code, kbd, samp {
+    font-size: 1em;
     font-family: monospace, serif;
     _font-family: 'courier new', monospace;
-    font-size: 1em;
 }
 pre {
     white-space: pre;
@@ -190,10 +187,10 @@ small {
     font-size: 85%;
 }
 sub, sup {
-    font-size: 75%;
-    line-height: 0;
     position: relative;
     vertical-align: baseline;
+    font-size: 75%;
+    line-height: 0;
 }
 sup {
     top: -0.5em;
@@ -207,9 +204,9 @@ sub {
    ========================================================================== */
 
 ul, ol {
-    padding: 0 0 0 40px;
-	font-size: 1.2em;
 	margin: 0 0 15px;
+    padding: 0 0 0 20px;
+	font-size: 1.4em;
 }
 
 dd {
@@ -222,10 +219,9 @@ li ul, li ol {
 	line-height: 1;
 }
 nav ul {
-    list-style: none;
-    list-style-image: none;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 /* =============================================================================
@@ -234,8 +230,8 @@ nav ul {
 
 img {
     border: 0;
-    -ms-interpolation-mode: bicubic;
     vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
 }
 svg:not(:root) {
     overflow: hidden;
@@ -257,22 +253,22 @@ form {
     margin: 0;
 }
 fieldset {
-    border: 0;
     margin: 0;
     padding: 0;
+    border: 0;
 }
 label {
     cursor: pointer;
 }
 legend {
+    padding: 0;
     border: 0;
     *margin-left: -7px;
-    padding: 0;
 }
 button, input, select, textarea {
-    font-size: 100%;
     margin: 0;
     vertical-align: baseline;
+    font-size: 100%;
     *vertical-align: middle;
 }
 button, input {
@@ -288,17 +284,17 @@ input[type="checkbox"], input[type="radio"] {
     padding: 0;
 }
 input[type="search"] {
-    -webkit-appearance: textfield;
-    -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
     box-sizing: content-box;
+    -webkit-appearance: textfield;
 }
 input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 button::-moz-focus-inner, input::-moz-focus-inner {
-    border: 0;
     padding: 0;
+    border: 0;
 }
 textarea {
     overflow: auto;
@@ -317,9 +313,9 @@ input:invalid, textarea:invalid {
    ========================================================================== */
 
 table {
-	font-size: 1.2em;
-    border-collapse: collapse;
     border-spacing: 0;
+    border-collapse: collapse;
+	font-size: 1.4em;
 }
 td {
     vertical-align: top;
@@ -332,8 +328,8 @@ td {
 /* ===== Wrapper ===== */
 
 .wrapper {
-	width: 978px;
 	margin: 0 auto;
+	width: 978px;
 }
 
 
@@ -350,16 +346,10 @@ header {
 
 /* ===== Nav ===== */
 
-header nav ul {
-	clear: both;
-	overflow:hidden;
-	padding: 0;
-}
+header nav ul {}
 
 header nav li {
 	float: left;
-	list-style: none;
-	margin: 0;
 }
 
 header nav a {
@@ -453,11 +443,11 @@ footer {
    Please define your styles before this section.
    ========================================================================== */
 
-.clear { display: block; height: 0; line-height: 0; font-size: 0; clear: both; overflow:hidden; }
+.clear { display: block; clear: both; overflow:hidden; height: 0; font-size: 0; line-height: 0; }
 /* clearfix */
 .cf:before, .cf:after {
-    content: "";
     display: table;
+    content: "";
 }
 .cf:after {
     clear: both;
@@ -473,11 +463,11 @@ footer {
 @media print {
     * {
         background: transparent !important;
-        color: black !important;
         box-shadow: none !important;
+        color: black !important;
         text-shadow: none !important;
-        filter: none !important;
         -ms-filter: none !important;
+        filter: none !important;
     }
     a, a:visited {
         text-decoration: underline;
