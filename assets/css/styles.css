@@ -218,11 +218,6 @@ li ul, li ol {
 	font-size: 1em;
 	line-height: 1;
 }
-nav ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
 
 /* =============================================================================
    Embedded content
@@ -346,14 +341,20 @@ header {
 
 /* ===== Nav ===== */
 
-header nav ul {}
-
-header nav li {
+header nav {
 	float: left;
+	font-size: 0;
 }
 
 header nav a {
-	text-decoration: none;
+	font-size: 14px;
+	font-size: .7rem; /* half pixel size */
+	display: inline-block;
+}
+
+.ie7 header nav a {
+	zoom: 1;
+	display: inline;
 }
 
 header nav a:hover,
