@@ -827,6 +827,9 @@ class Minimee_lib {
 					{
 						return $contents;
 					}
+
+					// re-set $contents_orig in case we need to return
+					$contents_orig = $contents;
 				}
 				// HOOK END
 
@@ -874,17 +877,25 @@ class Minimee_lib {
 					{
 						return $contents;
 					}
+
+					// copy to $contents_orig in case we need to return
+					$contents_orig = $contents;
 				}
 				// HOOK END
 
+				// prepend URL if relative path exists & configured to do so
+				if($rel !== FALSE && $this->config->is_yes('css_prepend_mode'))
+				{
+					Minimee_helper::library('css_urirewriter');
+					$contents = Minify_CSS_UriRewriter::prepend($contents, $rel . '/');
 
-				// set a relative path if exists
-				$relativePath = ($rel !== FALSE && $this->config->is_yes('css_prepend_mode')) ? $rel . '/' : NULL;
+					// copy to $contents_orig in case we need to return
+					$contents_orig = $contents;
+				}
 
-				// be sure we want to minify
+				// minify if configured to do so
 				if ($this->config->is_yes('minify_css'))
 				{
-
 					// See if CSSMin was explicitly requested
 					if ($this->config->css_library == 'cssmin')
 					{
@@ -898,13 +909,6 @@ class Minimee_lib {
 						
 						unset($cssmin);
 
-						// cssmin does not rewrite URLs, so we may need to do so here
-						if ($relativePath !== NULL)
-						{
-							Minimee_helper::library('css_urirewriter');
-		
-							$contents = Minify_CSS_UriRewriter::prepend($contents, $relativePath);
-						}
 					}
 
 					// the default is to run Minify_CSS
@@ -914,18 +918,7 @@ class Minimee_lib {
 					
 						Minimee_helper::library('minify');
 	
-						$contents = Minify_CSS::minify($contents, array('prependRelativePath' => $relativePath));
-					}
-				}
-
-				// un-minified, but (maybe) uri-rewritten contents
-				else
-				{
-					if ($relativePath !== NULL)
-					{
-						Minimee_helper::library('css_urirewriter');
-	
-						$contents = Minify_CSS_UriRewriter::prepend($contents, $relativePath);
+						$contents = Minify_CSS::minify($contents);
 					}
 				}
 

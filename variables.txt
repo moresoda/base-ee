@@ -33,7 +33,7 @@ Line 28: /morecms/expressionengine/config/config.php
 // ============================
 
 $config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
-$config['site_index'] 				= APPLICATION_ENV == 'live' ? '' : 'index.php';
+$config['site_index'] 				= '';
 $config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
 
 $config['save_tmpl_files'] 			= 'y'; //Just in case..

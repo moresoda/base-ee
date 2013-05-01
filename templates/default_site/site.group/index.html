@@ -1,5 +1,7 @@
-{embed="embeds/header"}
-
+{embed="embeds/header" {if segment_1}page="internal"{/if}}
+	{if segment_1}
+		{embed="site/internal"}
+	{if:else}
 		<div class="content cf">
 			<section class="content-left">
 
@@ -10,5 +12,5 @@
 			</section> <!-- content-right -->
 
 		</div> <!-- content -->
-
+	{/if}
 {embed="embeds/footer"}
