@@ -96,6 +96,12 @@
 #devot-ee table tr.hidden_addon td.addon-name {
 	color:#516475;
 }
+#devot-ee span.commercial_designation {
+	color: #516475;
+	font-weight: normal;
+	font-size: xx-small;
+	vertical-align: top;
+}
 /* notes */
 #devot-ee table .notes td {
 	background:#1f2a33;
@@ -231,6 +237,9 @@
 #devot-ee table .link-present a.available span {
 	background-position:0 -17px;
 }
+#devot-ee img.monitor-loading { 
+	visibility: hidden;
+}
 /* footer */
 #devotee-footer {
 	padding:20px 25px 0;
@@ -247,14 +256,14 @@
 	color:#ff9c00 !important;
 }
 #devotee-footer .logos {
-	width:244px;
+	width:110px;
 	height:25px;
 	margin:15px auto;
 }
 #devotee-footer .logos a {
 	display:block;
 	float:left;
-	width:122px;
+	width:110px;
 	height:25px;
 	text-indent:-9999px;
 	background:url(../images/logos.png) no-repeat;

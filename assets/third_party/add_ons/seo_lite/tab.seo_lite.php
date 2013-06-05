@@ -16,9 +16,14 @@ class Seo_lite_tab {
     {
         $this->EE =& get_instance();
         $this->EE->lang->loadfile('seo_lite');
+        // don't load config if we have this config item. This is used for overriding from a master config
+        if(!$this->EE->config->item('seolite_show_keywords_field')) {
+            $this->EE->load->config('seolite');
+        }
 
-        if($this->EE->config->item('seo_lite_tab_title')) {
-            $this->EE->lang->language['seo_lite'] = $this->EE->config->item('seo_lite_tab_title');
+        $tab_title = $this->EE->config->item('seolite_tab_title') ? $this->EE->config->item('seolite_tab_title') : $this->EE->config->item('seo_lite_tab_title');   // config item was renamed but we support the old seo_lite_tab_title as well
+        if($tab_title) {
+            $this->EE->lang->language['seo_lite'] = $tab_title;
         }
     }
 
@@ -66,21 +71,24 @@ class Seo_lite_tab {
            'field_maxl' => '1024'
        );
 
-        $settings[] = array(
-           'field_id' => 'seo_lite_keywords',
-           'field_label' => lang('seokeywords'),
-           'field_required' => 'n',
-           'field_data' => $keywords,
-           'field_list_items' => '',
-           'field_fmt' => '',
-           'field_instructions' => lang('keywords_instructions'),
-           'field_show_fmt' => 'n',
-           'field_fmt_options' => array(),
-           'field_pre_populate' => 'n',
-           'field_text_direction' => 'ltr',
-            'field_type' => 'textarea',
-            'field_ta_rows'		   => 5,
-       );
+        if($this->EE->config->item('seolite_show_keywords_field') != 'n') {
+
+            $settings[] = array(
+               'field_id' => 'seo_lite_keywords',
+               'field_label' => lang('seokeywords'),
+               'field_required' => 'n',
+               'field_data' => $keywords,
+               'field_list_items' => '',
+               'field_fmt' => '',
+               'field_instructions' => lang('keywords_instructions'),
+               'field_show_fmt' => 'n',
+               'field_fmt_options' => array(),
+               'field_pre_populate' => 'n',
+               'field_text_direction' => 'ltr',
+                'field_type' => 'textarea',
+                'field_ta_rows'		   => 5,
+           );
+        }
 
         $settings[] = array(
            'field_id' => 'seo_lite_description',
@@ -123,7 +131,7 @@ class Seo_lite_tab {
             'site_id' => $site_id,
             'entry_id' => $entry_id,
             'title' => $seo_lite_data['seo_lite_title'],
-            'keywords' => $seo_lite_data['seo_lite_keywords'],
+            'keywords' => isset($seo_lite_data['seo_lite_keywords']) ? $seo_lite_data['seo_lite_keywords'] : '',
             'description' => $seo_lite_data['seo_lite_description'],
         );
 

@@ -15,7 +15,7 @@ class Developer_acc
 {
 	var $name	 		= 'Developer';
 	var $id	 			= 'developer';
-	var $version	 	= '1.5';
+	var $version	 	= '1.7';
 	var $description	= 'Adds functionality for developers';
 	var $sections	 	= array();
 	
@@ -76,6 +76,19 @@ class Developer_acc
 		
 		$html .= '<li><a href="'.BASE.'&C=design&M=new_template_group" tabindex="-1" class="add">Add Template Group</a></li></ul></li>';
 		
+
+		// snippets	
+		$query = $this->EE->template_model->get_snippets();
+				
+		$html .= '<li class="parent"><a href="'.BASE.'&C=design&M=snippets" tabindex="-1">Snippets</a><ul>';
+		
+		foreach ($query->result() as $row)
+		{						
+			$html .= '<li><a href="'.BASE.'&C=design&M=snippets_edit&snippet='.$row->snippet_name.'" tabindex="-1">'.$row->snippet_name.'</a></li>';
+		}
+		
+		$html .= '<li><a href="'.BASE.'&C=design&M=snippets_edit" tabindex="-1" class="add">Add Snippet</a></li></ul></li>';
+		
 		
 		// custom fields
 		$this->EE->load->model('field_model');	
@@ -119,7 +132,7 @@ class Developer_acc
 		
 		// categories
 		$this->EE->load->model('category_model');	
-		$query = $this->EE->category_model->get_categories('', $this->EE->config->item('site_id'));
+		$query = $this->EE->category_model->get_category_groups('', $this->EE->config->item('site_id'));
 		
 		$html .= '<li class="parent"><a href="'.BASE.'&C=admin_content&M=category_management" tabindex="-1">Categories</a><ul>';
 
@@ -154,7 +167,9 @@ class Developer_acc
 			$html .= '<li><a href="'.BASE.'&C=members&M=view_all_members&group_id='.$row->group_id.'" tabindex="-1" class="tip">members</a><a href="'.BASE.'&C=members&M=edit_member_group&group_id='.$row->group_id.'" tabindex="-1">'.$row->group_title.'</a></li>';
 		}
 		
-		$html .= '<li><a href="'.BASE.'&C=members&M=edit_member_group" tabindex="-1" class="add">Add Member Group</a></li></ul></li>';
+		$html .= '<li><a href="'.BASE.'&C=members&M=edit_member_group" tabindex="-1" class="add">Add Member Group</a></li>';
+		$html .= '<li><a href="'.BASE.'&C=members&M=view_all_members" tabindex="-1" class="add">View All Members</a></li>';
+		$html .= '</ul></li>';
 		
 		
 		// upload preferences
@@ -185,20 +200,87 @@ class Developer_acc
 		$html .= '<li class="nav_divider"></li>';
 		
 		
+		// load add-ons model
+		$this->EE->load->model('addons_model');
+		
 		// modules		
 		$this->EE->db->select('module_name');
 		$this->EE->db->where('has_cp_backend', 'y');
 		$this->EE->db->order_by('module_name', 'asc');
 		$query = $this->EE->db->get('modules');
 		
-		$html .= '<li class="parent"><a href="'.BASE.'&C=addons_modules" tabindex="-1">Modules</a><ul>';
-
-		foreach ($query->result() as $row)
+		if ($query->num_rows())
 		{
-			$html .= '<li><a href="'.BASE.'&C=addons_modules&M=show_module_cp&module='.strtolower($row->module_name).'" tabindex="-1">'.str_replace('_', ' ', $row->module_name).'</a></li>';
+			$html .= '<li class="parent"><a href="'.BASE.'&C=addons_modules" tabindex="-1">Modules</a><ul>';
+	
+			foreach ($query->result() as $row)
+			{
+				$html .= '<li><a href="'.BASE.'&C=addons_modules&M=show_module_cp&module='.strtolower($row->module_name).'" tabindex="-1">'.ucwords(str_replace('_', ' ', $row->module_name)).'</a></li>';
+			}
+			
+			$html .= '</ul></li>';
 		}
 		
-		$html .= '</ul></li>';
+		
+		// accessories		
+		$this->EE->db->select('class');
+		$this->EE->db->order_by('class', 'asc');
+		$query = $this->EE->db->get('accessories');
+		
+		if ($query->num_rows())
+		{
+			$html .= '<li class="parent"><a href="'.BASE.'&C=addons_accessories" tabindex="-1">Accessories</a><ul>';
+	
+			foreach ($query->result() as $row)
+			{
+				$html .= '<li><a href="'.BASE.'&C=addons_accessories&M=edit_prefs&accessory='.strtolower(str_replace('_acc', ' ', $row->class)).'" tabindex="-1">'.ucwords(str_replace(array('_acc', '_'), ' ', $row->class)).'</a></li>';
+			}
+			
+			$html .= '</ul></li>';
+		}
+		
+
+		// extensions
+		$this->EE->db->select('class');
+		$this->EE->db->where('settings !=', '');
+		$this->EE->db->order_by('class', 'asc');
+		$this->EE->db->group_by('class');
+		$query = $this->EE->db->get('extensions');
+		
+		if ($query->num_rows())
+		{
+			$html .= '<li class="parent"><a href="'.BASE.'&C=addons_extensions" tabindex="-1">Extensions</a><ul>';
+	
+			foreach ($query->result() as $row)
+			{
+				$html .= '<li><a href="'.BASE.'&C=addons_extensions&M=extension_settings&file='.strtolower(str_replace('_ext', ' ', $row->class)).'" tabindex="-1">'.ucwords(str_replace(array('_ext', '_'), ' ', $row->class)).'</a></li>';
+			}
+			
+			$html .= '</ul></li>';
+		}
+		
+		
+		// fieldtypes
+		$this->EE->db->select('name');
+		$this->EE->db->where('settings !=', 'YTowOnt9');
+		$this->EE->db->order_by('name', 'asc');
+		$query = $this->EE->db->get('fieldtypes');
+		
+		if ($query->num_rows())
+		{
+			$html .= '<li class="parent"><a href="'.BASE.'&C=addons_fieldtypes" tabindex="-1">Fieldtypes</a><ul>';
+	
+			foreach ($query->result() as $row)
+			{
+				$html .= '<li><a href="'.BASE.'&C=addons_fieldtypes&M=global_settings&ft=expresso='.strtolower($row->name).'" tabindex="-1">'.ucwords(str_replace('_', ' ', $row->name)).'</a></li>';
+			}
+			
+			$html .= '</ul></li>';
+		}
+		
+		
+		// divider
+		$html .= '<li class="nav_divider"></li>';
 		
 		
 		// admin

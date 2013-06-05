@@ -16,5 +16,9 @@ $ignored_addons = array(
 	'cartthrob_price_modifiers',
 	'cartthrob_price_quantity_thresholds',
 	'cartthrob_price_simple',
-	'cartthrob_price_by_member_group'
+	'cartthrob_price_by_member_group',
+	'eedt_log_viewer',
+	'eedt_memory_history',
+	'eedt_minimal',
+	'eedt_perf_alerts'
 );

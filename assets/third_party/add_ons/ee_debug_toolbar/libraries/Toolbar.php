@@ -8,7 +8,7 @@
  * @copyright      Copyright (c) 2012, mithra62, Eric Lamb.
  * @link           http://mithra62.com/
  * @updated        1.0
- * @filesource     ./system/expressionengine/third_party/nagger/
+ * @filesource     ./system/expressionengine/third_party/ee_debug_toolbar/
  */
 
 /**
@@ -23,19 +23,44 @@
 class Toolbar
 {
 
-	var $default_theme = "default";
+	/**
+	 * The theme to use if no other theme is set
+	 * @var string
+	 */
+	public $default_theme = "default";
+	
+	/**
+	 * The available positions for the toolbar to live
+	 * @var array
+	 */
+	public $toolbar_positions = array(
+			'bottom-left',
+			'top-left',
+			'bottom-right',
+			'top-right'
+	);
 
 	public function __construct()
 	{
 		$this->EE = & get_instance();
+		$this->EE->load->helpers('eedt_output');
 	}
 	
+	/**
+	 * Wrapper to setup and return the toolbar settings
+	 */
 	public function get_settings()
 	{
 		if (!isset($this->EE->session->cache['ee_debug_toolbar']['settings']))
 		{
 			$this->EE->load->model('ee_debug_settings_model', 'debug_settings');
-			$this->EE->session->cache['ee_debug_toolbar']['settings'] = $this->EE->debug_settings->get_settings();
+			if ($this->EE->extensions->active_hook('ee_debug_toolbar_init_settings') === TRUE)
+			{
+				$defaults = array();
+				$defaults = $this->EE->extensions->call('ee_debug_toolbar_init_settings', $defaults);
+				$this->EE->debug_settings->set_defaults($defaults);
+			}
+			$this->EE->session->cache['ee_debug_toolbar']['settings'] = $this->EE->debug_settings->get_settings();		
 		}
 	
 		return $this->EE->session->cache['ee_debug_toolbar']['settings'];
@@ -50,7 +75,7 @@ class Toolbar
 	{
 		sort($files);
 
-		$path_third         = realpath(PATH_THIRD);
+		$path_third         = realpath(eedt_third_party_path());
 		$path_ee            = realpath(APPPATH);
 		$path_first_modules = realpath(PATH_MOD);
 		$bootstrap_file     = FCPATH . SELF;
@@ -83,6 +108,10 @@ class Toolbar
 		return $return;
 	}
 
+	/**
+	 * Wrapper to setup the Database panel SQL queries
+	 * @return multitype:|multitype:string
+	 */
 	public function setup_queries()
 	{
 		$dbs = array();
@@ -121,14 +150,21 @@ class Toolbar
 		return $output;
 	}
 
+	/**
+	 * Wrapper to setup the benchmark data
+	 * @return array
+	 */
 	public function setup_benchmarks()
 	{
 		$profile = array();
-		foreach ($this->EE->benchmark->marker as $key => $val) {
+		foreach ($this->EE->benchmark->marker as $key => $val) 
+		{
 			// We match the "end" marker so that the list ends
 			// up in the order that it was defined
-			if (preg_match("/(.+?)_end/i", $key, $match)) {
-				if (isset($this->EE->benchmark->marker[$match[1] . '_end']) AND isset($this->EE->benchmark->marker[$match[1] . '_start'])) {
+			if (preg_match("/(.+?)_end/i", $key, $match)) 
+			{
+				if (isset($this->EE->benchmark->marker[$match[1] . '_end']) AND isset($this->EE->benchmark->marker[$match[1] . '_start'])) 
+				{
 					$profile[$match[1]] = $this->EE->benchmark->elapsed_time($match[1] . '_start', $key);
 				}
 			}
@@ -165,7 +201,7 @@ class Toolbar
 			$return[] = array(
 				'time'   => $parts['0'],
 				'memory' => (float)$parts['1'],
-				'desc'   => $tooltip
+				'desc'   => utf8_encode($tooltip) //a little sanity for UTF-8
 			);
 		}
 
@@ -178,11 +214,10 @@ class Toolbar
 	 * @param $log array
 	 * @return string
 	 */
-	public function format_tmpl_chart_json($data)
+	public function format_tmpl_chart_json(array $data)
 	{
 		return json_encode($data);
 	}
-
 
 	/**
 	 * Format a number of bytes into a human readable format.
@@ -233,9 +268,13 @@ class Toolbar
 		return round($val, $digits) . " " . $symbols[$i] . $bB;
 	}	
 	
+	/**
+	 * Checks the system for the available themes and sets up as $key => $value array
+	 * @return array
+	 */
 	public function get_themes()
 	{
-		$path = (defined('PATH_THIRD_THEMES') ? PATH_THIRD_THEMES : rtrim($this->EE->config->item('theme_folder_path'), '/')).'/ee_debug_toolbar/themes/';
+		$path = eedt_theme_path().'/ee_debug_toolbar/themes/';
 		$d = dir($path);
 		$themes = array();
 		$bad = array('.', '..');
@@ -252,16 +291,149 @@ class Toolbar
 	}
 	
 	/**
-	 * Create Theme CSS URL
+	 * Create Theme Asset URLs
 	 *
 	 * @param string $theme
 	 * @return string
 	 */
 	public function create_theme_url($theme, $sub_dir = '')
 	{
-		if (is_dir(PATH_THIRD_THEMES . "ee_debug_toolbar/themes/" . $theme . "/$sub_dir/")) {
-			return URL_THIRD_THEMES . "ee_debug_toolbar/themes/" . $theme . "/$sub_dir/";
+		$path = eedt_theme_path();
+		$url = eedt_theme_url();
+		if (is_dir($path . "ee_debug_toolbar/themes/" . $theme . "/$sub_dir/")) 
+		{
+			return $url . "ee_debug_toolbar/themes/" . $theme . "/$sub_dir/";
 		}
-		return URL_THIRD_THEMES . "ee_debug_toolbar/themes/" . $this->default_theme . "/$sub_dir/";
-	}	
+		
+		return $url . "ee_debug_toolbar/themes/" . $this->default_theme . "/$sub_dir/";
+	}
+
+	/**
+	 * Returns the ACT for the given params
+	 * @param string $class
+	 * @param string $method
+	 */
+	public function fetch_action_id($method, $class)
+	{
+		$this->EE->load->dbforge();
+		$this->EE->db->select('action_id');
+		$query = $this->EE->db->get_where('actions', array('class' => $class, 'method' => $method));
+		return $query->row('action_id');		
+	}
+	
+	/**
+	 * Returns the action URL for the given params
+	 * @param string $method
+	 * @param string $class
+	 */	
+	public function get_action_url($method, $class = 'Ee_debug_toolbar')
+	{
+		$url = $this->EE->config->config['site_url'];
+		return $url.'?ACT='.$this->fetch_action_id($method, $class);
+	}
+	
+	/**
+	 * Creates the internal ACT URL for use by extensions
+	 * @param string $act_method
+	 * @param string $act_class
+	 * @return string
+	 */
+	public function create_act_url($act_method, $act_class = 'Ee_debug_toolbar_ext')
+	{
+		return $url = $this->get_action_url('act').AMP.'class='.$act_class.AMP.'method='.$act_method;
+	}
+	
+	/**
+	 * Takes the panel data and writes them to $path
+	 * @param array $panels
+	 * @param string $path
+	 */
+	public function cache_panels($panels, $path)
+	{
+		$this->EE->load->library('xml_writer');
+	    $this->EE->xml_writer->setRootName('EEDT');
+		$this->EE->xml_writer->initiate();
+		$this->EE->xml_writer->startBranch('panels');
+		foreach($panels AS $panel)
+		{
+			$this->EE->xml_writer->startBranch($panel->get_name().'_panel');
+			$this->EE->xml_writer->addNode('name', $panel->get_name(), array(), TRUE);
+			$this->EE->xml_writer->addNode('data_target', $panel->get_target(), array(), TRUE);
+			$this->EE->xml_writer->addNode('button_icon', $panel->get_button_icon(), array(), TRUE);
+			$this->EE->xml_writer->addNode('button_icon_alt_text', $panel->get_button_icon_alt_text(), array(), TRUE);
+			$this->EE->xml_writer->addNode('button_label', $panel->get_button_label(), array(), TRUE);
+			$this->EE->xml_writer->addNode('output', base64_encode($panel->get_panel_contents()), array(), TRUE);
+			$this->EE->xml_writer->endBranch();
+		}
+		
+		$this->EE->xml_writer->endBranch();
+		$xml = $this->EE->xml_writer->getXml(false);
+				
+		$filename = $path.$this->make_cache_filename();
+		
+		$string = utf8_encode($xml);
+		$gz = gzopen($filename.'.gz','w9');
+		gzwrite($gz, $string);
+		gzclose($gz);
+		
+		chmod($filename.'.gz', 0777);
+				
+		//write_file($filename, utf8_encode($xml));
+	}
+	
+	/**
+	 * Creates the Toolbar panel cache filename
+	 * @return string
+	 */
+	public function make_cache_filename()
+	{
+		return '.'.$this->EE->session->userdata['session_id'].'.eedt';
+	}
+
+	/**
+	 * Builds the JS Config to be output as JSON
+	 *
+	 * @param array $vars
+	 */
+	public function js_config($vars = array())
+	{
+		$config = array();
+
+		$config['template_debugging_enabled'] = $vars['template_debugging_enabled'];
+
+		//Panels
+		$config['panels'] = array();
+		$config['cp'] = $this->EE->input->get('D') == 'cp' ? true : false;
+		$config['base_css_url'] = $vars['theme_css_url'];
+		$config['base_js_url'] = $vars['theme_js_url'];
+		$config['panel_ajax_url'] = str_replace("&amp;", "&", $this->get_action_url('act').AMP);
+
+		/**
+		 * @var Eedt_panel_model $panel
+		 */
+		foreach ($vars['panels'] as $panel) {
+			$config['panels'][] = array(
+				'name'            => $panel->get_name(),
+				'js'              => $panel->get_js(),
+				'css'             => $panel->get_css(),
+				'panel_fetch_url' => $panel->get_panel_fetch_url() ? $panel->get_panel_fetch_url() :
+					str_replace("&amp;", "&", $this->create_act_url("get_panel_data")) . "&panel=" . $panel->get_name()
+			);
+		}
+
+		return $config;
+	}
+	
+	/**
+	 * Checks to verify the MySQL Query Cache is enabled or not
+	 * @return string
+	 */
+	public function verify_mysql_query_cache()
+	{
+		$data = $this->EE->db->query("SHOW VARIABLES LIKE 'have_query_cache'")->row_array();
+		if(!empty($data['Value']) && $data['Value'] == 'YES')
+		{
+			return 'y';
+		}
+	}
 }

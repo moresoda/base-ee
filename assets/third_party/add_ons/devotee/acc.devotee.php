@@ -7,7 +7,7 @@
  * @subpackage  Add-ons
  * @category    Accessories
  * @author      Visual Chefs, LLC
- * @copyright   Copyright (c) 2011-2012, Visual Chefs, LLC
+ * @copyright   Copyright (c) 2011-2013, Visual Chefs, LLC
  */
 class Devotee_acc
 {
@@ -16,7 +16,7 @@ class Devotee_acc
 	 */
 	public $name        = 'devot:ee Monitor';
 	public $id          = 'devot-ee';
-	public $version     = '1.2.1';
+	public $version     = '1.2.4';
 	public $description = 'Monitor your add-ons for updates.';
 	public $sections    = array();
 
@@ -72,7 +72,7 @@ class Devotee_acc
 		$this->EE =& get_instance();
 
 		// Set cache settings
-		$this->_cache_path = APPPATH . 'cache/devotee/';
+		$this->_cache_path = $this->EE->config->item('devotee_monitor_cachepath') ? $this->EE->config->item('devotee_monitor_cachepath') : APPPATH . 'cache/devotee/';
 		$this->_cache_time = 60 * 60; // 1 hour
 
 		// Create cache folder if it doesn't exist
@@ -149,7 +149,7 @@ class Devotee_acc
 	 */
 	public function set_sections()
 	{
-		$this->sections['Add-on Information'] = $this->_get_addons();
+		$this->sections['Add-on Information'] = $this->_init();
 
 		// Add theme assets to CP
 		$this->EE->cp->add_to_head('<link rel="stylesheet" href="' . $this->theme_url . 'styles/accessory.css?v=' . $this->version . '" />');
@@ -157,16 +157,31 @@ class Devotee_acc
 	}
 
 	/**
-	 * Get installed add-on information
+	 * Initial view of the accessory... allows us to load it through Ajax
 	 *
 	 * @return  string
 	 */
-	protected function _get_addons($show_hidden_addons = FALSE)
+	protected function _init()
+	{
+		$link = htmlspecialchars_decode(BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_load');
+
+		return $this->EE->load->view('init', array(
+			'link' => $link,
+			'cp'   => $this->EE->cp,
+		), TRUE);
+	}
+
+	/**
+	 * Get installed add-on information
+	 *
+	 * @param Boolean $show_hidden_addons
+	 * @param Boolean $return_view
+	 *
+	 * @return Mixed
+	 */
+	protected function _get_addons($show_hidden_addons = FALSE, $return_view=TRUE)
 	{
 		$this->EE->load->helper(array('file', 'language'));
-
-		// Load JSON services since we have to support older versions of PHP
-		$this->EE->load->library('Services_json');
 
 		// Setup cache file
 		$cache_file = $this->_cache_path . 'addons';
@@ -326,14 +341,20 @@ class Devotee_acc
 			$hidden_addons[] = $hid_ad->package;
 		}
 
-		// Return the view
-		return $this->EE->load->view('accessory', array(
-			'updates'       => json_decode($updates),
-			'last_check'    => filemtime($cache_file),
-			'hidden_addons' => $hidden_addons,
-			'show_hidden'	=> $show_hidden_addons,
-			'cp'			=> $this->EE->cp
-		), TRUE);
+		if ( $return_view ) {
+
+			// Return the view
+			return $this->EE->load->view('accessory', array(
+				'updates'       => json_decode($updates),
+				'last_check'    => filemtime($cache_file),
+				'hidden_addons' => $hidden_addons,
+				'show_hidden'	=> $show_hidden_addons,
+				'cp'			=> $this->EE->cp
+			), TRUE);
+
+		} else {
+			return json_decode($updates);
+		}
 	}
 
 	/**
@@ -363,16 +384,17 @@ class Devotee_acc
 	{
 		$data = array(
 			'data'    => $this->_addons,
-			'site_ip' => $this->EE->input->ip_address(),
+			'site'    => md5( $this->EE->config->item('site_label') ),
+			'version' => $this->EE->config->item('app_version')
 		);
 
-		$ch = curl_init('http://devotee.expressionmonitor.com/updates');
+		$ch = curl_init('http://monitor.devot-ee.com/');
 		curl_setopt_array($ch, array(
 			CURLOPT_POST           => TRUE,
 			CURLOPT_CONNECTTIMEOUT => 2,
 			CURLOPT_TIMEOUT        => 5,
 			CURLOPT_RETURNTRANSFER => TRUE,
-			CURLOPT_POSTFIELDS     => $this->EE->javascript->generate_json($data, TRUE),
+			CURLOPT_POSTFIELDS     => json_encode($data),
 			CURLOPT_HTTPHEADER     => array(
 				'Content-type: application/json'
 			)
@@ -382,9 +404,9 @@ class Devotee_acc
 
 		if( ! $response)
 		{
-			$response = $this->EE->javascript->generate_json(array(
+			$response = json_encode(array(
 				'error' => 'The API could not be reached. Please try again later.'
-			), TRUE);
+			));
 		}
 
 		return $response;
@@ -415,6 +437,16 @@ class Devotee_acc
 		}
 
 		return $abbrevs;
+	}
+
+	/**
+	 * AJAX method for loading the initial view
+	 *
+	 * @return  void
+	 */
+	public function process_load()
+	{
+		$this->process_refresh(FALSE);
 	}
 
 	/**
@@ -492,5 +524,37 @@ class Devotee_acc
 			// Refresh view
 			$this->process_refresh(FALSE);
 		}
+	}
+
+	/**
+	 * This method fetches general site data to be used as
+	 * debug information.
+	 *
+	 * @return void
+	 */
+	public function process_debug_info()
+	{
+		$this->EE->load->library('user_agent');
+
+		$server_software = isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : 'N/A';
+
+		$vars = array(
+			'ee_version'	     => $this->EE->config->item('app_version'),
+			'php_version'	     => phpversion(),
+			'db_driver'		     => $this->EE->db->dbdriver,
+			'updates'		     => $this->_get_addons(TRUE, FALSE),
+			'browser'		     => $this->EE->agent->browser().' '.$this->EE->agent->version(),
+			'cookie_domain'	     => $this->EE->config->item('cookie_domain'),
+			'cookie_path'        => $this->EE->config->item('cookie_path'),
+			'user_session_type'  => $this->EE->config->item('user_session_type'),
+			'admin_session_type' => $this->EE->config->item('admin_session_type'),
+			'cp_cookie_domain'	 => $this->EE->config->item('cp_cookie_domain'),
+			'cp_cookie_path'     => $this->EE->config->item('cp_cookie_path'),
+			'cp_session_ttl'     => $this->EE->config->item('cp_session_ttl'),
+			'server_software'    => $server_software
+		);
+
+		header('Content-Type : text/plain');
+		exit( $this->EE->load->view('debug_info', $vars, TRUE) );
 	}
 }

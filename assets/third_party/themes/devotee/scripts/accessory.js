@@ -1,12 +1,6 @@
 var Devotee = {
 	// Initialize
 	init: function() {
-		$('#accessoryTabs > ul a.devot-ee').parent('li').attr('id', 'devot-ee-accessory-tab');
-
-		if($('#devot-ee table tr.update').length > 0) {
-			$('#devot-ee-accessory-tab').addClass('updates-available');
-		}
-
 		this.toggleNotes();
 		this.refresh();
 		this.hideAddon();
@@ -31,10 +25,11 @@ var Devotee = {
 			e.preventDefault();
 
 			var url = $(this).attr('href');
-
+			$('.monitor-loading').css('visibility', 'visible');
 			$.get(url, function(data) {
 				var html = $('div.border', data);
 				obj.updateView(html);
+				$('.monitor-loading').css('visibility', 'hidden');
 			}, 'html');
 		});
 	},

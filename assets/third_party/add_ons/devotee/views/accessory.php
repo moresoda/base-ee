@@ -3,7 +3,7 @@
 		<?php if( ! empty($updates->error)) : ?>
 			<p><?php echo $updates->error ?></p>
 		<?php else : ?>
-			<p class="last-check">Last Add-on Check: <?php echo date('l, M. j, Y @ g:ia.', $last_check) ?>&nbsp;&nbsp;<a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_refresh' ?>" class="available refresh">Check Now</a></p>
+			<p class="last-check">Last Add-on Check: <?php echo date('l, M. j, Y @ g:ia.', $last_check) ?>&nbsp;&nbsp;<a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_refresh' ?>" class="available refresh">Check Now</a>&nbsp;<img class="monitor-loading" src="<?php echo URL_THIRD_THEMES; ?>/devotee/images/loader.gif" alt="Loading..." /></p>
 			<table>
 				<thead>
 					<tr class="first">
@@ -43,12 +43,14 @@
 								<td class="addon-notes">&nbsp;</td>
 							<?php endif ?>
 
+							<?php $commercial_designation = isset($addon->license) && $addon->license == 'Commercial' ? "&nbsp;<span class='commercial_designation' >$</span> "  : '' ?>
+
 							<!-- name -->
 							<td class="addon-name">
 								<?php if (! in_array($package, $hidden_addons) ): ?>
-									<?php echo $addon->name ?><span>&nbsp;<a class="hide_addon" href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_hide_addon' . AMP . 'package=' . $package ?>">Hide this</a></span>
+									<?php echo $addon->name ?><span><?php echo $commercial_designation ?>&nbsp;<a class="hide_addon" href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_hide_addon' . AMP . 'package=' . $package ?>">Hide this</a></span>
 								<?php else: ?>
-									<?php echo $addon->name ?><span>&nbsp;<a class="unhide_addon" href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_unhide_addon' . AMP . 'package=' . $package ?>">Unhide this</a></span>
+									<?php echo $addon->name ?><span><?php echo $commercial_designation ?>&nbsp;<a class="unhide_addon" href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_unhide_addon' . AMP . 'package=' . $package ?>">Unhide this</a></span>
 								<?php endif; ?>
 							</td>
 
@@ -141,20 +143,12 @@
 			<?php elseif ( ! empty($hidden_addons) && $show_hidden == TRUE) : ?>
 				<p class="hidden"><a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_refresh' ?>" class="show-hidden-addons">Hide Previously Hidden Add-ons (<?php echo count($hidden_addons) ?>)</a></p>
 			<?php endif ?>
-			<p>Last Add-on Check: <?php echo date('l, M. j, Y @ g:ia.', $last_check) ?>&nbsp;&nbsp;<a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_refresh' ?>" class="available refresh">Check Now</a></p>
+			<p>Last Add-on Check: <?php echo date('l, M. j, Y @ g:ia.', $last_check) ?>&nbsp;&nbsp;<a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_refresh' ?>" class="available refresh">Check Now</a>&nbsp;<img class="monitor-loading" src="<?php echo URL_THIRD_THEMES; ?>/devotee/images/loader.gif" alt="Loading..." /></p>
 			<p class="logos">
 				<a href="<?php echo $cp->masked_url('http://dvt.ee/mtr-acc-lnk-lgo'); ?>" target="_blank" class="first">devot:ee</a>
-				<a href="<?php echo $cp->masked_url('http://eecoder.com'); ?>" target="_blank" class="last">eecoder</a>
 			</p>
 			<p>
-				<small>
-					EE Add-on Monitor is proudly powered by
-					<a href="<?php echo $cp->masked_url('http://dvt.ee/mtr-acc-lnk-ttl'); ?>" target="_blank">devot:ee</a>
-					in partnership with
-					<a href="<?php echo $cp->masked_url('http://eecoder.com'); ?>" target="_blank">eecoder</a>.
-					Designed by
-					<a href="<?php echo $cp->masked_url('http://antistaticdesign.com'); ?>" target="_blank">Antistatic</a>
-				</small>
+				<small><a href="<?php echo BASE . AMP . 'C=addons_accessories' . AMP . 'M=process_request' . AMP . 'accessory=devotee' . AMP . 'method=process_debug_info' ?>" target="_blank" >Site debug info &rarr;</a></small>
 			</p>
 		</div>
 	</div><!-- /.border -->

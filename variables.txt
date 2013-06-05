@@ -33,9 +33,8 @@ Line 28: /morecms/expressionengine/config/config.php
 // ============================
 
 $config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
-$config['site_index'] 				= '';
-$config['document_root']			= APPLICATION_ENV == 'preview' ? $_SERVER['DOCUMENT_ROOT'] . '/' . $config['preview_folder'] : $_SERVER['DOCUMENT_ROOT'];
-
+$config['site_index']				= '';
+$config['document_root']			= $_SERVER['DOCUMENT_ROOT'];
 $config['save_tmpl_files'] 			= 'y'; //Just in case..
 
 //Paths
@@ -52,7 +51,6 @@ $config['path_third_themes'] 		= $config['document_root'] . "/assets/third_party
 $config['third_party_path'] 		= $config['document_root'] . "/assets/third_party/add_ons/";
 
 
-
 //Urls
 $config['avatar_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/avatars/";
 $config['photo_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/member_photos/";
@@ -60,10 +58,8 @@ $config['sig_img_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/signat
 $config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
-
+// Moves third_party folder outside of EE
 $config['url_third_themes'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/third_party/themes/";
-
-
 
 
 //Uploads
@@ -94,10 +90,6 @@ if(APPLICATION_ENV == 'live') {
 	);
 }else{
 	$config['minimee'] = array(
-		'cache_path'		=> $config['document_root'] . '/assets/cache/',
-		'cache_url'			=> 'http://' . $_SERVER['HTTP_HOST'] . '/assets/cache/',
-		'cleanup'			=> 'yes',
-		'minify_html'		=> 'no',
 		'disable'			=> 'yes'
 	);
 }
@@ -151,7 +143,7 @@ $db['expressionengine']['cachedir'] = APPPATH . "cache/db_cache/";
 $db['preview']['hostname'] = "localhost";
 $db['preview']['username'] = "moreprev";
 $db['preview']['password'] = "12qwaszx";
-$db['preview']['database'] = "moresoda-preview_co_uk_PREVIEW-DB"; // ATTENTION
+$db['preview']['database'] = "moreprev_PREVIEW-DB"; // ATTENTION
 $db['preview']['dbdriver'] = "mysql";
 $db['preview']['dbprefix'] = "exp_";
 $db['preview']['pconnect'] = FALSE;

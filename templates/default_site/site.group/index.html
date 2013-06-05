@@ -1,4 +1,4 @@
-{embed="embeds/header" {if segment_1}page="internal"{/if}}
+{embed="embeds/header" page="{if segment_1}internal{if:else}index{/if}"}
 	{if segment_1}
 		{embed="site/internal"}
 	{if:else}

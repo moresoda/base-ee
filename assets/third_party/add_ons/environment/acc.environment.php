@@ -28,7 +28,7 @@ class Environment_acc {
 	
 	public $name			= 'Environment';
 	public $id				= 'environment';
-	public $version			= '1.0';
+	public $version			= '1.1';
 	public $description		= 'Display which environment you are on at all times in the CP.';
 	public $sections		= array();
 	
@@ -39,18 +39,29 @@ class Environment_acc {
 	{
 		$EE =& get_instance();
 		$js = '';
+		$bg = $EE->config->item('environment_color') ? $EE->config->item('environment_color') : '#1f2b33';
 		
 		if ($EE->session->userdata('group_id') == 1 && defined('ENV')) {
-			$js = 'var $body = $("body");
+			$js = '(function () {
+
+				var $body = $("body");
 				var $siteName = $("#navigationTabs").find(".msm_sites");
 				var siteNameOffset = $siteName.offset();
 				var rightPos = $body.width() - siteNameOffset.left + 20;
 				
-				$body.append("<div class=\"environment-label\" style=\"right: " + rightPos + "px;\">' . ENV . '</div>");';
+				var $div = $("<div />", {
+					"class": "environment-label " + "' . ENV . '".toLowerCase(),
+					style: "right:" + rightPos + "px",
+					text: "' . ENV . '"
+				});
+
+				$body.append($div);
+
+			})();';
 			
 			$css = '<style type="text/css" media="screen">
 						.environment-label {
-							background: #1f2b33;
+							background: ' . $bg . ';
 							-moz-border-radius-bottomleft: 3px;
 							-webkit-border-bottom-left-radius: 3px;
 							border-bottom-left-radius: 3px;
