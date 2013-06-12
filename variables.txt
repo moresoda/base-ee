@@ -32,7 +32,6 @@ Line 28: /morecms/expressionengine/config/config.php
 // = Moresoda Config Settings =
 // ============================
 
-$config['preview_folder']			= 'PREVIEW-FOLDER';  // ATTENTION - Folder on the preview site where the site is located
 $config['site_index']				= '';
 $config['document_root']			= $_SERVER['DOCUMENT_ROOT'];
 $config['save_tmpl_files'] 			= 'y'; //Just in case..

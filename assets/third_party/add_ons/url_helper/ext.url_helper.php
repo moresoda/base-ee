@@ -71,6 +71,7 @@ class Url_helper_ext {
 
         $this->config = $this->EE->config->item('current_url') ? $this->EE->config->item('current_url') : array();
         $this->prefix = isset($this->config['prefix']) ? $this->config['prefix'] : '';
+		$this->EE->load->helper('string');
     }
 
     /**
@@ -83,10 +84,10 @@ class Url_helper_ext {
 
         $qry = (isset($_SERVER['QUERY_STRING']) AND $_SERVER['QUERY_STRING'] != '') ? '?'. $_SERVER['QUERY_STRING'] : '';
 
-        $data[$this->prefix.'current_url'] = $this->EE->functions->reduce_double_slashes($this->EE->config->item('site_url') . $this->EE->uri->uri_string .'/'. $qry);
-        $data[$this->prefix.'current_uri'] = $this->EE->functions->reduce_double_slashes('/'. $this->EE->uri->uri_string .'/'. $qry);
-        $data[$this->prefix.'current_url_encoded'] = base64_encode($this->EE->functions->reduce_double_slashes($data[$this->prefix.'current_url']));
-        $data[$this->prefix.'current_uri_encoded'] = base64_encode($this->EE->functions->reduce_double_slashes('/'. $this->EE->uri->uri_string .'/'. $qry));
+        $data[$this->prefix.'current_url'] = reduce_double_slashes($this->EE->config->item('site_url') . $this->EE->uri->uri_string .'/'. $qry);
+        $data[$this->prefix.'current_uri'] = reduce_double_slashes('/'. $this->EE->uri->uri_string .'/'. $qry);
+        $data[$this->prefix.'current_url_encoded'] = base64_encode(reduce_double_slashes($data[$this->prefix.'current_url']));
+        $data[$this->prefix.'current_uri_encoded'] = base64_encode(reduce_double_slashes('/'. $this->EE->uri->uri_string .'/'. $qry));
 
         $data[$this->prefix.'query_string'] = $qry;
 
