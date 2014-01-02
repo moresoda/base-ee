@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'FONT-NAME';
     src: url('/assets/fonts/FILE.eot');
-    src: url('/assets/fonts/FILE?#iefix') format('embedded-opentype'),
+    src: url('/assets/fonts/FILE.eot?#iefix') format('embedded-opentype'),
          url('/assets/fonts/FILE.svg') format('svg'),
          url('/assets/fonts/FILE.woff') format('woff');
     font-weight: normal;

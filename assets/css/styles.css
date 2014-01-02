@@ -2,10 +2,10 @@
 =========================================
 
 Project Name:
-Creation date: 00 Month 2012
+Creation date: 00 Month 2013
 Author: Jon MacKinnon | jon@moresoda.co.uk
 Company: moresoda design ltd
-Company URI:http: //www.moresoda.co.uk
+Company URI: http://www.moresoda.co.uk
 
 =========================================
 */
@@ -391,6 +391,10 @@ footer {
 
 .right {
 	float: right;
+}
+
+.column {
+	float: left;
 }
 
 
