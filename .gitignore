@@ -1,0 +1,6 @@
+morecms/expressionengine/cache/*
+morecms/expressionengine/config/database.php
+assets/cache/*
+.htaccess
+variables.txt
+readme.textile

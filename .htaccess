@@ -271,17 +271,31 @@ FileETag None
 # Remove index.php
 # ----------------------------------------------------------------------
 
-Options +FollowSymLinks
+# Options +FollowSymLinks
+#
+# RewriteCond %{REQUEST_URI} ^/$ [NC]
+# RewriteRule (.*) site/index
+#
+#
+# RewriteCond $1 !\.(gif|jpe?g|png)$ [NC]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*[^/])/?$ /index.php?/$1 [L]
 
-RewriteCond %{REQUEST_URI} ^/$ [NC]
-RewriteRule (.*) site/index
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
 
+	# Removes index.php from ExpressionEngine URLs
+	RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+	RewriteCond %{REQUEST_URI} !/morecms/.* [NC]
+	RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
 
-RewriteCond $1 !\.(gif|jpe?g|png)$ [NC]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*[^/])/?$ /index.php?/$1 [L]
-
+	# Directs all EE web requests through the site index file
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>
 
 
 # ----------------------------------------------------------------------

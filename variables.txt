@@ -1,15 +1,5 @@
 =====
 
-.gitignore
-
-morecms/expressionengine/cache/*
-assets/cache/*
-.htaccess
-variables.txt
-readme.textile
-
-=====
-
 Line 13: /index.php, /admin.php, /morecms/index.php
 
 // ==================================

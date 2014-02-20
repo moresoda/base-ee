@@ -409,29 +409,49 @@ footer {
 
    ========================================================================== */
 
-/*	Tablet Layout: 768px.
+
+/*	Mobile Layout: < 740px.
 ================================================================	*/
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width: 739px) {
 
-}
+} /* mobile */
 
-
-/*	Mobile Layout: 320px.
+/*	Portrait Mobile Layout: 480px.
 ================================================================	*/
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 479px) {
 
-}
-
+} /* mobile portrait */
 
 /*	Wide Mobile Layout: 480px.
 ================================================================	*/
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 480px) and (max-width: 739px) {
 
-}
+} /* wide mobile */
 
+
+/*	Tablet Layout: < 960px.
+================================================================	*/
+
+@media only screen and (min-width: 740px) {
+
+} /* tablet */
+
+/*	Tablet Layout: > 740px < 960px.
+================================================================	*/
+
+@media only screen and (min-width: 740px) and (max-width: 959px) {
+
+} /* tablet only */
+
+/*	Desktop Layout: < 960px.
+================================================================	*/
+
+@media only screen and (min-width: 960px) {
+
+} /* desktop */
 
 /*	Retina media query.
 	Overrides styles for devices with a
@@ -443,6 +463,12 @@ footer {
 	only screen and (min-device-pixel-ratio: 2) {
 
 }
+
+
+
+
+
+
 
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
