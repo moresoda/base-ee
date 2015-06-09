@@ -23,7 +23,7 @@ $plugin_info = array(
  * @since		Version 2.0
  * @filesource
  */
- 
+
 // ------------------------------------------------------------------------
 
 /**
@@ -130,7 +130,7 @@ class Minimee {
 	{
 		// got EE?
 		$this->EE =& get_instance();
-		
+
 		// grab reference to our cache
 		$this->cache =& Minimee_helper::cache();
 
@@ -235,7 +235,7 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:css
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	public function css()
@@ -253,12 +253,12 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:display
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	public function display($method = '')
 	{
-		// abort error if no queue was provided		
+		// abort error if no queue was provided
 		if ( ! $this->EE->TMPL->fetch_param('js') && ! $this->EE->TMPL->fetch_param('css'))
 		{
 			return $this->_abort('You must specify a queue name.');
@@ -300,9 +300,9 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:embed
-	 * 
+	 *
 	 * Alias of exp:minimee:contents
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	public function embed()
@@ -314,7 +314,7 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:html
-	 * 
+	 *
 	 * @return void
 	 */
 	public function html()
@@ -327,7 +327,7 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:js
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	public function js()
@@ -345,7 +345,7 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:link
-	 * 
+	 *
 	 * Alias to exp:minimee:url
 	 */
 	public function link()
@@ -369,7 +369,7 @@ class Minimee {
 
 	/**
 	 * Plugin function: exp:minimee:url
-	 * 
+	 *
 	 * Rather than returning the tags or cache contents, simply return URL to cache(s)
 	 */
 	public function url()
@@ -378,12 +378,12 @@ class Minimee {
 	}
 	// ------------------------------------------------------
 
-	
+
 	/**
 	 * Display usage notes in EE control panel
 	 *
 	 * @return string Usage notes
-	 */	
+	 */
 	public function usage()
 	{
 		// just return basic usage
@@ -413,7 +413,7 @@ See documentation for details.
 HEREDOC;
 	}
 	// ------------------------------------------------------
-	
+
 
 	/**
 	 * Abort and return original tagdata.
@@ -421,7 +421,7 @@ HEREDOC;
 	 *
 	 * @param mixed The caught exception or string
 	 * @return string The value of our Minimee::on_error property
-	 */	
+	 */
 	protected function _abort($e = FALSE)
 	{
 		if ($e && is_string($e))
@@ -446,9 +446,9 @@ HEREDOC;
 	// ------------------------------------------------------
 
 
-	/** 
+	/**
 	 * Internal function to return contents of cache file
-	 * 
+	 *
 	 * @return	Contents of cache (css or js)
 	 */
 	protected function _cache_contents($filename)
@@ -466,7 +466,7 @@ HEREDOC;
 				break;
 
 				case 'js' :
-					$open = '<script' . $this->attributes . '>';
+					$open = '<script' . $this->attributes . ' async>';
 					$close = '</script>';
 				break;
 			endswitch;
@@ -478,9 +478,9 @@ HEREDOC;
 	// ------------------------------------------------------
 
 
-	/** 
+	/**
 	 * Internal function for making link to cache
-	 * 
+	 *
 	 * @return	String containing an HTML tag reference to given reference
 	 */
 	protected function _cache_path($filename)
@@ -491,9 +491,9 @@ HEREDOC;
 	// ------------------------------------------------------
 
 
-	/** 
+	/**
 	 * Internal function for making tag strings
-	 * 
+	 *
 	 * @return	String containing an HTML tag reference to given reference
 	 */
 	protected function _cache_tag($filename)
@@ -517,10 +517,10 @@ HEREDOC;
 	}
 	// ------------------------------------------------------
 
-	
-	/** 
+
+	/**
 	 * Internal function for making link to cache
-	 * 
+	 *
 	 * @return	String containing an HTML tag reference to given reference
 	 */
 	protected function _cache_url($filename)
@@ -533,7 +533,7 @@ HEREDOC;
 
 	/**
 	 * Internal function used by exp:minimee:display
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	protected function _display()
@@ -563,13 +563,13 @@ HEREDOC;
 		}
 	}
 	// ------------------------------------------------------
-	
-	
+
+
 	/**
 	 * Parse tagdata for <link> and <script> tags,
 	 * pulling out href & src attributes respectively.
 	 * [Adapted from SL Combinator]
-	 * 
+	 *
 	 * @return bool TRUE on success of fetching files; FALSE on failure
 	 */
 	protected function _fetch_files($haystack = FALSE)
@@ -612,10 +612,10 @@ HEREDOC;
 	}
 	// ------------------------------------------------------
 
-	
+
 	/**
 	 * Fetch parameters from $this->EE->TMPL
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function _fetch_params()
@@ -656,18 +656,18 @@ HEREDOC;
 		 * Part 2: config
 		 */
 		$tagparams = $this->EE->TMPL->tagparams;
-		
+
 		// we do need to account for the fact that minify="no" is assumed to be pertaining to the tag
 		if (isset($tagparams['combine']))
 		{
 			$tagparams['combine_' . $this->type] = $tagparams['combine'];
 		}
-		
+
 		if (isset($tagparams['minify']))
 		{
 			$tagparams['minify_' . $this->type] = $tagparams['minify'];
 		}
-		
+
 		// pass all params through our config, will magically pick up what's needed
 		$this->MEE->config->reset()->extend($tagparams);
 
@@ -676,9 +676,9 @@ HEREDOC;
 		{
 			$this->queue = strtolower($this->EE->TMPL->fetch_param('queue', NULL));
 		}
-		
+
 		unset($tagparams);
-		
+
 		// chaining
 		return $this;
 	}
@@ -689,7 +689,7 @@ HEREDOC;
 	 * Retrieve files from cache
 	 *
 	 * @return void
-	 */	
+	 */
 	protected function _fetch_queue()
 	{
 		if ( ! isset($this->cache[$this->type][$this->queue]))
@@ -703,7 +703,7 @@ HEREDOC;
 			$this->template = $this->cache[$this->type][$this->queue]['template'];
 
 			// TODO: re-set other runtime properties
-			
+
 			// files: order by priority
 			ksort($this->cache[$this->type][$this->queue]['files']);
 
@@ -730,7 +730,7 @@ HEREDOC;
 				Minimee_helper::log('No files found in the queue named \'' . $this->type . '\'.', 3);
 			}
 		}
-		
+
 		// chaining
 		return $this;
 	}
@@ -744,7 +744,7 @@ HEREDOC;
 		{
 			// we can actually figure out if it's a runtime setting or default
 			$runtime = $this->config->get_runtime();
-			
+
 			if (isset($runtime['disable']) && $runtime['disable'] == 'yes')
 			{
 
@@ -755,11 +755,11 @@ HEREDOC;
 				throw new Exception('Disabled via config.');
 			}
 		}
-	}	
-	
+	}
+
 	/**
 	 * Postpone processing our method until template_post_parse hook?
-	 * 
+	 *
 	 * @param String	Method name
 	 * @return Mixed	TRUE if delay, FALSE if not
 	 */
@@ -770,7 +770,7 @@ HEREDOC;
 		{
 			return FALSE;
 		}
-		
+
 		else
 		{
 			// if calling from our hook return FALSE
@@ -778,28 +778,28 @@ HEREDOC;
 			{
 				return FALSE;
 			}
-			
+
 			// store TMPL settings and return our $needle to find later
 			else
 			{
 				// base our needle off the calling tag
 				$needle = sha1($this->EE->TMPL->tagproper);
-				
+
 				// save our tagparams to re-instate during calling of hook
 				$tagparams = $this->EE->TMPL->tagparams;
-				
+
 				if ( ! isset($this->cache['template_post_parse']))
 				{
 					$this->cache['template_post_parse'] = array();
 				}
-				
+
 				$this->cache['template_post_parse'][$needle] = array(
 					'method' => $method,
 					'tagparams' => $tagparams
 				);
-				
+
 				Minimee_helper::log('Postponing process of Minimee::display(`' . $method . '`) until template_post_parse hook.', 3);
-				
+
 				// return needle so we can find it later
 				return LD.$needle.RD;
 			}
@@ -810,7 +810,7 @@ HEREDOC;
 
 	/**
 	 * Return contents as determined by $this->display
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	protected function _return($filenames)
@@ -851,7 +851,7 @@ HEREDOC;
 
 	/**
 	 * Called by Minimee:css and Minimee:js, performs basic run command
-	 * 
+	 *
 	 * @return mixed string or empty
 	 */
 	protected function _run()
@@ -902,9 +902,9 @@ HEREDOC;
 	// ------------------------------------------------------
 
 
-	/** 
+	/**
 	 * Set our display property
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function _set_display($format = '')
@@ -940,9 +940,9 @@ HEREDOC;
 	// ------------------------------------------------------
 
 
-	/** 
+	/**
 	 * Adds the files to be queued into session
-	 * 
+	 *
 	 * @param string either 'js' or 'css'
 	 * @return void
 	 */
@@ -963,14 +963,14 @@ HEREDOC;
 				'files' => array()
 			);
 		}
-		
+
 		// be sure we have a priority key in place
 		$priority = (int) $this->EE->TMPL->fetch_param('priority', 0);
 		if ( ! isset($this->cache[$this->type][$this->queue]['files'][$priority]))
 		{
 			$this->cache[$this->type][$this->queue]['files'][$priority] = array();
 		}
-		
+
 		// Add $on_error
 		if ( ! isset($this->cache[$this->type][$this->queue]['on_error'][$priority]))
 		{
@@ -990,6 +990,6 @@ HEREDOC;
 
 }
 // END
-	
-/* End of file pi.minimee.php */ 
+
+/* End of file pi.minimee.php */
 /* Location: ./system/expressionengine/third_party/minimee/pi.minimee.php */

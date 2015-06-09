@@ -58,9 +58,10 @@
 	{/exp:minimee:css}
 
 	<!--[if lt IE 9]>
-		<script src="https://rawgithub.com/aFarkas/html5shiv/master/src/html5shiv.js"></script>
-		<script src="https://rawgithub.com/dperini/nwmatcher/178bad9043/src/nwmatcher.js"></script>
-		<script src="https://rawgithub.com/keithclark/selectivizr/master/selectivizr.js"></script>
+		<script src="/assets/js/ie.html5shiv.js"></script>
+		<script src="/assets/js/ie.nwmatcher.js"></script>
+		<script src="/assets/js/ie.selectivizr.js"></script>
+		<script src="/assets/js/ie.respond.js"></script>
 	<![endif]-->
 
 </head>
@@ -73,7 +74,9 @@
 
 			<a class="logo" href="{site_url}"><img src="/assets/images/logo.png" alt="{site_name}" /></a>
 
-			<nav>
+			<span class="js-nav-toggle tablet-hide desktop-hide"><img src="/assets/images/icon-nav-toggle.png"></span>
+
+			<nav class="js-nav-toggle-area">
 				<a{if segment_1 == ""} class="active"{/if} href="{site_url}">Home</a>
 				<a{if segment_1 == "XXX"} class="active"{/if} href="{path='XXX'}">XXX</a>
 			</nav> <!-- nav -->

@@ -2,7 +2,7 @@
 =========================================
 
 Project Name:
-Creation date: 00 Month 2013
+Creation date: 00 Month 2015
 Author: Jon MacKinnon | jon@moresoda.co.uk
 Company: moresoda design ltd
 Company URI: http://www.moresoda.co.uk
@@ -15,19 +15,19 @@ Company URI: http://www.moresoda.co.uk
    ========================================================================== */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
-    display: block;
+	display: block;
 }
 audio, canvas, video {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
 }
 audio:not([controls]) {
-    display: none;
-    height: 0;
+	display: none;
+	height: 0;
 }
 [hidden] {
-    display: none;
+	display: none;
 }
 
 /* =============================================================================
@@ -35,37 +35,37 @@ audio:not([controls]) {
    ========================================================================== */
 
 html {
-    overflow-y: scroll;
-    font-size: 125%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
-}
-body {
-    margin: 0;
-	color: #444;
-	font: 50%/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif; /* base font size 1em (10px)*/
-}
-button, input, select, textarea {
-    color: #222;
-    font-family: sans-serif;
-}
-::-moz-selection {
-    background: #fe57a1;
-    color: #fff;
-    text-shadow: none;
-}
-::selection {
-    background: #fe57a1;
-    color: #fff;
-    text-shadow: none;
-}
-
-* {
+	overflow-y: scroll;
+	font-size: 125%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	*behavior: url(/assets/js/boxsizing.htc);
+}
+body {
+	margin: 0;
+	color: #444;
+	font: 50%/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif; /* base font size 1em (10px)*/
+}
+button, input, select, textarea {
+	color: #222;
+	font-family: sans-serif;
+}
+::-moz-selection {
+	background: #fe57a1;
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background: #fe57a1;
+	color: #fff;
+	text-shadow: none;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
 }
 
 
@@ -74,11 +74,11 @@ button, input, select, textarea {
    ========================================================================== */
 
 a {
-    color: #00e;
+	color: #00e;
 }
 
 a:focus {
-    outline: thin dotted;
+	outline: thin dotted;
 }
 
 a:hover {
@@ -86,7 +86,7 @@ a:hover {
 }
 
 a:hover, a:active {
-    outline: 0;
+	outline: 0;
 }
 
 /* =============================================================================
@@ -94,16 +94,16 @@ a:hover, a:active {
    ========================================================================== */
 
 abbr[title] {
-    border-bottom: 1px dotted;
+	border-bottom: 1px dotted;
 }
 b, strong {
-    font-weight: bold;
+	font-weight: bold;
 }
 blockquote {
-    margin: 1em 40px;
+	margin: 1em 40px;
 }
 dfn {
-    font-style: italic;
+	font-style: italic;
 }
 
 h1 {
@@ -142,23 +142,23 @@ h4 img, h5 img, h6 img {
 }
 
 hr {
-    display: block;
-    margin: 1em 0;
-    padding: 0;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
+	display: block;
+	margin: 1em 0;
+	padding: 0;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
 }
 ins {
-    background: #ff9;
-    color: #000;
-    text-decoration: none;
+	background: #ff9;
+	color: #000;
+	text-decoration: none;
 }
 mark {
-    background: #ff0;
-    color: #000;
-    font-weight: bold;
-    font-style: italic;
+	background: #ff0;
+	color: #000;
+	font-weight: bold;
+	font-style: italic;
 }
 
 p {
@@ -167,36 +167,36 @@ p {
 }
 
 pre, code, kbd, samp {
-    font-size: 1em;
-    font-family: monospace, serif;
-    _font-family: 'courier new', monospace;
+	font-size: 1em;
+	font-family: monospace, serif;
+	_font-family: 'courier new', monospace;
 }
 pre {
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 q {
-    quotes: none;
+	quotes: none;
 }
 q:before, q:after {
-    content: "";
-    content: none;
+	content: "";
+	content: none;
 }
 small {
-    font-size: 85%;
+	font-size: 85%;
 }
 sub, sup {
-    position: relative;
-    vertical-align: baseline;
-    font-size: 75%;
-    line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+	font-size: 75%;
+	line-height: 0;
 }
 sup {
-    top: -0.5em;
+	top: -0.5em;
 }
 sub {
-    bottom: -0.25em;
+	bottom: -0.25em;
 }
 
 /* =============================================================================
@@ -205,12 +205,12 @@ sub {
 
 ul, ol {
 	margin: 0 0 15px;
-    padding: 0 0 0 20px;
+	padding: 0 0 0 20px;
 	font-size: 1.4em;
 }
 
 dd {
-    margin: 0 0 0 40px;
+	margin: 0 0 0 40px;
 }
 
 li ul, li ol {
@@ -224,12 +224,13 @@ li ul, li ol {
    ========================================================================== */
 
 img {
-    border: 0;
-    vertical-align: middle;
-    -ms-interpolation-mode: bicubic;
+	border: 0;
+	vertical-align: middle;
+	-ms-interpolation-mode: bicubic;
+	max-width: 100%;
 }
 svg:not(:root) {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 /* =============================================================================
@@ -237,7 +238,7 @@ svg:not(:root) {
    ========================================================================== */
 
 figure {
-    margin: 0;
+	margin: 0;
 }
 
 /* =============================================================================
@@ -245,62 +246,62 @@ figure {
    ========================================================================== */
 
 form {
-    margin: 0;
+	margin: 0;
 }
 fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 label {
-    cursor: pointer;
+	cursor: pointer;
 }
 legend {
-    padding: 0;
-    border: 0;
-    *margin-left: -7px;
+	padding: 0;
+	border: 0;
+	*margin-left: -7px;
 }
 button, input, select, textarea {
-    margin: 0;
-    vertical-align: baseline;
-    font-size: 100%;
-    *vertical-align: middle;
+	margin: 0;
+	vertical-align: baseline;
+	font-size: 100%;
+	*vertical-align: middle;
 }
 button, input {
-    line-height: normal;
+	line-height: normal;
 }
 button, input[type="button"], input[type="reset"], input[type="submit"] {
-    cursor: pointer;
-    -webkit-appearance: button;
-    *overflow: visible;
+	cursor: pointer;
+	-webkit-appearance: button;
+	*overflow: visible;
 }
 input[type="checkbox"], input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
+	box-sizing: border-box;
+	padding: 0;
 }
 input[type="search"] {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    -webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	-webkit-appearance: textfield;
 }
 input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 button::-moz-focus-inner, input::-moz-focus-inner {
-    padding: 0;
-    border: 0;
+	padding: 0;
+	border: 0;
 }
 textarea {
-    overflow: auto;
-    vertical-align: top;
-    resize: vertical;
+	overflow: auto;
+	vertical-align: top;
+	resize: vertical;
 }
 input:valid, textarea:valid {
 
 }
 input:invalid, textarea:invalid {
-    background-color: #f0dddd;
+	background-color: #f0dddd;
 }
 
 /* =============================================================================
@@ -308,12 +309,12 @@ input:invalid, textarea:invalid {
    ========================================================================== */
 
 table {
-    border-spacing: 0;
-    border-collapse: collapse;
+	border-spacing: 0;
+	border-collapse: collapse;
 	font-size: 1.4em;
 }
 td {
-    vertical-align: top;
+	vertical-align: top;
 }
 
 /* ==|== primary styles =====================================================
@@ -385,6 +386,92 @@ footer {
 
 /* ===== Classes ===== */
 
+/* Vertical Align */
+
+.valign {
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	-webkit-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		 -o-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+	position: relative;
+}
+
+.valign .align {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		 -o-transform: translateY(-50%);
+			transform: translateY(-50%);
+	width: 100%;
+}
+
+
+
+
+/* ==|== media queries ======================================================
+
+========================================================================== */
+
+
+/*	Mobile Layout: < 740px.
+================================================================	*/
+
+@media only screen and (max-width: 739px) {
+
+.mobile-hide {
+	display: none !important;
+}
+
+/* ===== Wrapper ===== */
+
+.wrapper {
+	width: 300px;
+}
+
+} /* mobile */
+
+/*	Portrait Mobile Layout: 480px.
+================================================================	*/
+
+@media only screen and (max-width: 479px) {
+
+.portrait-hide {
+	display: none !important;
+}
+
+
+} /* mobile portrait */
+
+/*	Landscape Mobile Layout: 480px.
+================================================================	*/
+
+@media only screen and (min-width: 480px) and (max-width: 739px) {
+
+.landscape-hide {
+	display: none !important;
+}
+
+/* ===== Wrapper ===== */
+
+.wrapper {
+	width: 460px;
+}
+
+} /* mobile landscape */
+
+
+/*	Tablet Layout: > 740px.
+================================================================	*/
+
+@media only screen and (min-width: 740px) {
+
+/* ===== Classes ===== */
+
 .left {
 	float: left;
 }
@@ -398,73 +485,75 @@ footer {
 }
 
 
-
-
-
-
-
-
-
-/* ==|== media queries ======================================================
-
-   ========================================================================== */
-
-
-/*	Mobile Layout: < 740px.
-================================================================	*/
-
-@media only screen and (max-width: 739px) {
-
-} /* mobile */
-
-/*	Portrait Mobile Layout: 480px.
-================================================================	*/
-
-@media only screen and (max-width: 479px) {
-
-} /* mobile portrait */
-
-/*	Wide Mobile Layout: 480px.
-================================================================	*/
-
-@media only screen and (min-width: 480px) and (max-width: 739px) {
-
-} /* wide mobile */
-
-
-/*	Tablet Layout: < 960px.
-================================================================	*/
-
-@media only screen and (min-width: 740px) {
-
 } /* tablet */
 
 /*	Tablet Layout: > 740px < 960px.
 ================================================================	*/
 
-@media only screen and (min-width: 740px) and (max-width: 959px) {
+@media only screen and (min-width: 740px) and (max-width: 999px) {
+
+.tablet-hide {
+	display: none !important;
+}
+
+/* ===== Wrapper ===== */
+
+.wrapper {
+	width: 740px;
+}
 
 } /* tablet only */
 
-/*	Desktop Layout: < 960px.
+/*	Desktop Layout: < 1000px.
 ================================================================	*/
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1000px) {
+
+.desktop-hide {
+	display: none !important;
+}
+
+/* ===== Wrapper ===== */
+
+.wrapper {
+	width: 980px;
+}
 
 } /* desktop */
+
+/*	Desktop Only Layout: > 1024px < 1190px.
+================================================================	*/
+
+@media only screen and (min-width: 1000px) and (max-width: 1190px) {
+
+
+} /* desktop only */
+
+/*	Desktop Plus Layout: > 1024px.
+================================================================	*/
+
+@media only screen and (min-width: 1190px) {
+
+.desktop-hide {
+	display: none !important;
+}
+
+/* ===== Wrapper ===== */
+
+.wrapper {
+	width: 1106px;
+}
+
+} /* desktop plus */
 
 /*	Retina media query.
 	Overrides styles for devices with a
 	device-pixel-ratio of 2+, such as iPhone 4.
 ================================================================	*/
 
-@media
-	only screen and (-webkit-min-device-pixel-ratio: 2),
-	only screen and (min-device-pixel-ratio: 2) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
 
 }
-
-
 
 
 
@@ -477,14 +566,14 @@ footer {
 .clear { display: block; clear: both; overflow:hidden; height: 0; font-size: 0; line-height: 0; }
 /* clearfix */
 .cf:before, .cf:after {
-    display: table;
-    content: "";
+	display: table;
+	content: "";
 }
 .cf:after {
-    clear: both;
+	clear: both;
 }
 .cf {
-    *zoom: 1;
+	*zoom: 1;
 }
 
 /* ==|== print styles =======================================================
@@ -492,37 +581,37 @@ footer {
    ========================================================================== */
 
 @media print {
-    * {
-        background: transparent !important;
-        box-shadow: none !important;
-        color: black !important;
-        text-shadow: none !important;
-        -ms-filter: none !important;
-        filter: none !important;
-    }
-    a, a:visited {
-        text-decoration: underline;
-    }
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
-        content: "";
-    }
-    pre, blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-    thead {
-        display: table-header-group;
-    }
-    tr, img {
-        page-break-inside: avoid;
-    }
-    img {
-        max-width: 100% !important;
-    }
+	* {
+		background: transparent !important;
+		box-shadow: none !important;
+		color: black !important;
+		text-shadow: none !important;
+		-ms-filter: none !important;
+		filter: none !important;
+	}
+	a, a:visited {
+		text-decoration: underline;
+	}
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+	.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+		content: "";
+	}
+	pre, blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	thead {
+		display: table-header-group;
+	}
+	tr, img {
+		page-break-inside: avoid;
+	}
+	img {
+		max-width: 100% !important;
+	}
 }

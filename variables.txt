@@ -27,6 +27,7 @@ $config['site_url']					= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['cp_url']					= "http://" . $_SERVER['HTTP_HOST'] . "/morecms/index.php";
 $config['document_root']			= $_SERVER['DOCUMENT_ROOT'];
 $config['save_tmpl_files'] 			= 'y'; //Just in case..
+$config['autosave_interval_seconds'] = '10';
 
 //Paths
 $config['tmpl_file_basepath'] 		= $config['document_root'] . "/templates/";
@@ -46,7 +47,6 @@ $config['third_party_path'] 		= $config['document_root'] . "/assets/third_party/
 $config['avatar_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/avatars/";
 $config['photo_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/member_photos/";
 $config['sig_img_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/signature_attachments/";
-$config['site_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/";
 $config['theme_folder_url'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/themes/";
 $config['captcha_url'] 				= "http://" . $_SERVER['HTTP_HOST'] . "/images/captchas/";
 // Moves third_party folder outside of EE
@@ -55,16 +55,16 @@ $config['url_third_themes'] 		= "http://" . $_SERVER['HTTP_HOST'] . "/assets/thi
 
 //Uploads
 //FILE DIRECTORY NEEDS TO BE SET UP IN CONTROL PANEL FIRST, THEN
-//THIS WILL OVERRIDE THE SETTINGS ALLOWING US TO NOT HAVE TO FUCK
+//THIS WILL OVERRIDE THE SETTINGS ALLOWING US TO NOT HAVE TO MESS
 //AROUND WITH PATHS
 $config['upload_preferences'] = array(
 	1 => array( // THIS NUMBER HAS TO MATCH THE ID OF THE UPLOAD DIRECTORY
-		'name'			=> 'Images',
+		'name'			=> '1. Images',
 		'server_path' 	=> $config['document_root'] . '/uploads/images/',
 		'url'		 	=> 'http://' . $_SERVER['HTTP_HOST'] . '/uploads/images/'
 	),
 	2 => array( // THIS NUMBER HAS TO MATCH THE ID OF THE UPLOAD DIRECTORY
-		'name'			=> 'Files',
+		'name'			=> '2. Files',
 		'server_path' 	=> $config['document_root'] . '/uploads/files/',
 		'url'		 	=> 'http://' . $_SERVER['HTTP_HOST'] . '/uploads/files/'
 	)

@@ -15,7 +15,7 @@ class Developer_acc
 {
 	var $name	 		= 'Developer';
 	var $id	 			= 'developer';
-	var $version	 	= '1.7';
+	var $version	 	= '1.7.1';
 	var $description	= 'Adds functionality for developers';
 	var $sections	 	= array();
 	
@@ -272,7 +272,7 @@ class Developer_acc
 	
 			foreach ($query->result() as $row)
 			{
-				$html .= '<li><a href="'.BASE.'&C=addons_fieldtypes&M=global_settings&ft=expresso='.strtolower($row->name).'" tabindex="-1">'.ucwords(str_replace('_', ' ', $row->name)).'</a></li>';
+				$html .= '<li><a href="'.BASE.'&C=addons_fieldtypes&M=global_settings&ft='.strtolower($row->name).'" tabindex="-1">'.ucwords(str_replace('_', ' ', $row->name)).'</a></li>';
 			}
 			
 			$html .= '</ul></li>';

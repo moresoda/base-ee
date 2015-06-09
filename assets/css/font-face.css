@@ -7,8 +7,9 @@
     font-weight: normal;
     font-style: normal;
 }
+
 .replace {
-	font-family: *****;
+    font-family: 'FONT-NAME';
 	font-weight: 400 !important;
 }
 
@@ -17,11 +18,15 @@
 	zoom: 1;
 }
 
-
-.wf-loading .replace {
-  visibility: hidden;
+.replace {
+	visibility: hidden;
 }
 
 .wf-active .replace {
+	visibility: visible;
+}
 
+.wf-inactive .replace {
+	font-family: sans-serif;
+	visibility: visible;
 }

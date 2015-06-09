@@ -13,7 +13,7 @@ class Seo_lite {
 
 	var $return_data;
 	private $tag_prefix;
-    
+
 	public function Seo_lite() // backwards compatible __construct() won't work
 	{
         return $this->perform();
@@ -137,7 +137,8 @@ class Seo_lite {
                 $tagdata = $this->get_tagdata($seolite_entry->template);
 
                 $vars = array(
-                    $this->tag_prefix.'title' => htmlspecialchars($this->get_preferred_value($seolite_entry->seo_title, $seolite_entry->original_title, $default_title), ENT_QUOTES), // use SEO title over original if it exists, then original, then default_title from parameter
+                    $this->tag_prefix.'title' => htmlspecialchars($this->get_preferred_value($seolite_entry->original_title, $default_title), ENT_QUOTES), // use SEO title over original if it exists, then original, then default_title from parameter
+					$this->tag_prefix.'meta_title' => htmlspecialchars($this->get_preferred_value($seolite_entry->seo_title, $default_title), ENT_QUOTES), // use SEO title over original if it exists, then original, then default_title from parameter
                     $this->tag_prefix.'meta_keywords' => htmlspecialchars($this->get_preferred_value($seolite_entry->keywords, $seolite_entry->default_keywords, $default_keywords), ENT_QUOTES),
                     $this->tag_prefix.'meta_description' => htmlspecialchars($this->get_preferred_value($seolite_entry->description, $seolite_entry->default_description, $default_description), ENT_QUOTES),
                 );
@@ -247,7 +248,7 @@ class Seo_lite {
     {
         return preg_replace("~\{".$this->tag_prefix."extra:[^\}]*\}~",'', $tagdata );
     }
-    
+
     /**
      * This function will get the tagdata if SEO lite is used as a tag pair, or return back
      * the template shipped to it
@@ -315,7 +316,7 @@ class Seo_lite {
         return FALSE;
     }
 
-	private function get_request_uri() 
+	private function get_request_uri()
 	{
 		if(!isset($_SERVER['REQUEST_URI'])) {
 			$_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
@@ -409,7 +410,7 @@ class Seo_lite {
 
 	/**
      * Helper function for getting a parameter
-	 */		 
+	 */
 	private function get_param($key, $default_value = '')
 	{
 		$val = $this->EE->TMPL->fetch_param($key);
@@ -428,10 +429,10 @@ class Seo_lite {
 	 * Helper funciton for template logging
 	 */
 	private function error_log($msg)
-	{		
-		$this->EE->TMPL->log_item("seo_lite ERROR: ".$msg);		
-	}		
+	{
+		$this->EE->TMPL->log_item("seo_lite ERROR: ".$msg);
+	}
 }
 
-/* End of file mod.seo_lite.php */ 
+/* End of file mod.seo_lite.php */
 /* Location: ./system/expressionengine/third_party/seo_lite/mod.seo_lite.php */
