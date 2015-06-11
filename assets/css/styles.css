@@ -325,7 +325,7 @@ td {
 
 .wrapper {
 	margin: 0 auto;
-	width: 978px;
+	width: 980px;
 }
 
 
@@ -409,8 +409,6 @@ footer {
 			transform: translateY(-50%);
 	width: 100%;
 }
-
-
 
 
 /* ==|== media queries ======================================================
@@ -518,7 +516,7 @@ footer {
 .wrapper {
 	width: 980px;
 }
-
+    
 } /* desktop */
 
 /*	Desktop Only Layout: > 1024px < 1190px.
