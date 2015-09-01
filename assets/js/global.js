@@ -31,7 +31,7 @@ function elementHeights(el) {
 }
 
 function navToggle() {
-	$('.js-nav-toggle').on('touchend', function(){
+	$('.js-nav-toggle').on('click', function(){
 
 		setTimeout(function(){
 			$('.js-nav-toggle-area').stop().slideToggle();
