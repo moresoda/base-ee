@@ -2,7 +2,7 @@
 $('body').css({'visibility': 'hidden'});
 WebFontConfig = {
 	custom: {
-		families: ['Brandon'], // Font name as used in the stylesheet
+		families: ['XXX'], // Font name as used in the stylesheet
 		urls: ['/assets/css/font-face.css']
 	},
 	inactive: function() {
@@ -20,7 +20,7 @@ if($('html').hasClass('ie')) {
 }
 
 function elementHeights(el) {
-
+	$(el).css('height', 'auto');
 	var elements = $(el).map(function() {
 		return $(this).height();
 	}).get();

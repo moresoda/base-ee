@@ -431,6 +431,14 @@ footer {
 	width: 300px;
 }
 
+/* ===== Header ===== */
+
+/* ===== Nav ===== */
+
+header nav {
+	display: none;
+}
+
 } /* mobile */
 
 /*	Portrait Mobile Layout: 480px.
@@ -498,6 +506,14 @@ footer {
 
 .wrapper {
 	width: 740px;
+}
+
+/* ===== Header ===== */
+
+/* ===== Nav ===== */
+
+header nav {
+	display: block !important;
 }
 
 } /* tablet only */
